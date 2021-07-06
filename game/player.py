@@ -49,7 +49,10 @@ class Player(Actor):
             self.texture = constants.PLAYER_JUMPING[self._texture_index]
     def _check_idle(self):
         if self.change_x == 0: 
-            self.texture = constants.PLAYER_IDLE
+            num_textures = len(constants.PLAYER_IDLE)
+            self._current_frame = 0
+            self._texture_index = (self._texture_index + 1) % num_textures
+            self.texture = constants.PLAYER_IDLE[self._texture_index]
     def _check_walking(self):
         if self.change_x > 0 or self.change_x<0:
             self._current_frame += 1
