@@ -6,13 +6,15 @@ SCREEN_WIDTH = 800
 CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
 GRAVITY = 1
-# SPRITE CONSTANTS
+# ANIMAL CONSTANTS
+MOVE_SPEED = 3
 PLAYER_JUMP_SPEED = 15
 PLAYER_ANIMATION_RATE = 3
 PROJECT_ROOT = os.path.dirname(__file__)
-PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO/Sprites")
-
-#IDLE
+PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO/King Oxley Owens/Sprites")
+PLAYER_FALLING = [None] * 2 
+PLAYER_FALLING[0] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall1.png")
+PLAYER_FALLING[1] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall2.png")
 PLAYER_IDLE = [None] * 8
 PLAYER_IDLE[0] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle1.png")
 PLAYER_IDLE[1] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle2.png")
