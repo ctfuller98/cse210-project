@@ -12,6 +12,7 @@ class Player(Actor):
         self._is_walking = False
         self._current_frame = 0
         self._texture_index = 0
+        self.texture = constants.PLAYER_IDLE[0]
         self.scale = 3
         
     def jump(self):
@@ -25,7 +26,7 @@ class Player(Actor):
         self.change_y = 0
     def walk(self, speed):
         self._is_walking = True
-        self._change_x = speed
+        self.change_x = speed
     def update(self):
         self._update_position()
         self._check_idle()
@@ -49,10 +50,12 @@ class Player(Actor):
             self.texture = constants.PLAYER_JUMPING[self._texture_index]
     def _check_idle(self):
         if self.change_x == 0: 
-            num_textures = len(constants.PLAYER_IDLE)
-            self._current_frame = 0
-            self._texture_index = (self._texture_index + 1) % num_textures
-            self.texture = constants.PLAYER_IDLE[self._texture_index]
+            self._current_frame += 1
+            if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
+                num_textures = len(constants.PLAYER_IDLE)
+                self._current_frame = 0
+                self._texture_index = (self._texture_index + 1) % num_textures
+                self.texture = constants.PLAYER_IDLE[self._texture_index]
     def _check_walking(self):
         if self.change_x > 0 or self.change_x<0:
             self._current_frame += 1
