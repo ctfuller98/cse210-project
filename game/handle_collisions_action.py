@@ -15,4 +15,4 @@ class HandleCollisionsAction(Action):
         for ground in grounds:
             if arcade.check_for_collision(player, ground):
                 player.bottom = ground.top
-                player.walk()    
+                player.idle()    
