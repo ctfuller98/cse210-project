@@ -8,12 +8,11 @@ class Player(Actor):
         super().__init__()
         self.center_x = constants.CENTER_X
         self.center_y = constants.CENTER_Y
-        self.texture = constants.PLAYER_IDLE
         self._is_jumping = False
         self._is_walking = False
         self._current_frame = 0
         self._texture_index = 0
-        self.scale = 2
+        self.scale = 3
         
     def jump(self):
         if not self._is_jumping:
@@ -21,11 +20,12 @@ class Player(Actor):
             self._is_walking = False
             self.change_y = constants.PLAYER_JUMP_SPEED
     
-    def walk(self):
+    def idle(self):
         self._is_jumping = False
-        self._is_walking = True
         self.change_y = 0
-        
+    def walk(self, speed):
+        self._is_walking = True
+        self._change_x = speed
     def update(self):
         self._update_position()
         self._check_idle()
