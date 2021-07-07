@@ -10,6 +10,7 @@ class Player(Actor):
         self.center_y = constants.CENTER_Y
         self._is_jumping = False
         self._is_walking = False
+        self._is_attacking = False
         self._current_frame = 0
         self._texture_index = 0
         self.texture = constants.PLAYER_IDLE[0]
@@ -27,6 +28,11 @@ class Player(Actor):
     def walk(self, speed):
         self._is_walking = True
         self.change_x = speed
+    def attack_one(self,attacking):
+        if self._is_jumping == False:
+            self._is_attacking = attacking
+        else:
+            self._is_attacking = False
     def update(self):
         self._update_position()
         self._check_idle()
@@ -54,7 +60,7 @@ class Player(Actor):
             self.texture = constants.PLAYER_JUMPING
 
     def _check_idle(self):
-        if self.change_x == 0: 
+        if self.change_x == 0 and self._is_attacking == False: 
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
                 num_textures = len(constants.PLAYER_IDLE)
@@ -77,6 +83,15 @@ class Player(Actor):
                 self._current_frame = 0
                 self._texture_index = (self._texture_index + 1) % num_textures
                 self.texture = constants.PLAYER_WALKING_LEFT[self._texture_index]
+
+    def _check_attacking(self):
+        if self._is_attacking == True:
+            self._current_frame += 1
+            if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
+                num_textures = len(constants.ATTACK1)
+                self._current_frame = 0
+                self._texture_index = (self._texture_index + 1) % num_textures
+                self.texture = constants.ATTACK1[self._texture_index]
 
     def _update_position(self):
         self.change_y -= constants.GRAVITY   
