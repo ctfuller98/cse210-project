@@ -28,7 +28,6 @@ PLAYER_IDLE[5] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle6.png")
 PLAYER_IDLE[6] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle7.png")
 PLAYER_IDLE[7] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle8.png")
 #JUMPING
-PLAYER_JUMPING = [None] * 2
 PLAYER_JUMPING= arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png")
 PLAYER_JUMPING_LEFT = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png", mirrored=True)
 #WALKING
