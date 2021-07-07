@@ -39,7 +39,7 @@ class Player(Actor):
         self._check_jumping()
         self._check_walking()
         self._check_falling()
-        
+        self._check_attacking()
         
     def _check_falling(self):
         if self.change_y < -1 and self.change_x < 0:
