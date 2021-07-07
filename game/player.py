@@ -15,6 +15,7 @@ class Player(Actor):
         self._texture_index = 0
         self.texture = constants.PLAYER_IDLE[0]
         self.scale = 3
+        self.facing_left = True
         
     def jump(self):
         if not self._is_jumping:
@@ -28,6 +29,10 @@ class Player(Actor):
     def walk(self, speed):
         self._is_walking = True
         self.change_x = speed
+        if(speed != 0):
+            self.facing_left = speed < 0
+            print(self.facing_left)
+
     def attack_one(self,attacking):
         if self._is_jumping == False and self._is_walking == False:
             self._is_attacking = attacking
@@ -67,8 +72,10 @@ class Player(Actor):
                 num_textures = len(constants.PLAYER_IDLE)
                 self._current_frame = 0
                 self._texture_index = (self._texture_index + 1) % num_textures
-                self.texture = constants.PLAYER_IDLE[self._texture_index]
-
+                texture = constants.PLAYER_IDLE[self._texture_index]
+                if(self.facing_left):
+                    texture = constants.PLAYER_IDLE_LEFT[self._texture_index]
+                self.texture = texture
     def _check_walking(self):
         if self.change_x > 0:
             self._current_frame += 1
