@@ -11,7 +11,7 @@ MOVE_SPEED = 3
 PLAYER_JUMP_SPEED = 15
 PLAYER_ANIMATION_RATE = 3
 PROJECT_ROOT = os.path.dirname(__file__)
-PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO/King Oxley Owens/Sprites")
+PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO/Sprites/King Oxley Owens")
 PLAYER_FALLING = [None] * 2 
 PLAYER_FALLING[0] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall1.png")
 PLAYER_FALLING[1] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall2.png")
@@ -27,12 +27,11 @@ PLAYER_IDLE[4] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle5.png")
 PLAYER_IDLE[5] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle6.png")
 PLAYER_IDLE[6] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle7.png")
 PLAYER_IDLE[7] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle8.png")
+#JUMPING
 PLAYER_JUMPING = [None] * 2
-PLAYER_JUMPING[0] = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump1.png")
-PLAYER_JUMPING[1] = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png")
-PLAYER_JUMPING_LEFT = [None] * 2
-PLAYER_JUMPING_LEFT[0] = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump1.png", mirrored=True)
-PLAYER_JUMPING_LEFT[1] = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png", mirrored=True)
+PLAYER_JUMPING= arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png")
+PLAYER_JUMPING_LEFT = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png", mirrored=True)
+#WALKING
 PLAYER_WALKING = [None] * 8 
 PLAYER_WALKING[0] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run1.png", mirrored=False)
 PLAYER_WALKING[1] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run2.png", mirrored=False)
@@ -51,6 +50,26 @@ PLAYER_WALKING_LEFT[4] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run5.png", mirr
 PLAYER_WALKING_LEFT[5] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run6.png", mirrored=True)
 PLAYER_WALKING_LEFT[6] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run7.png", mirrored=True)
 PLAYER_WALKING_LEFT[7] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run8.png", mirrored=True)
+
+#FALLING
+PLAYER_FALLING = [None] * 2 
+PLAYER_FALLING[0] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall1.png")
+PLAYER_FALLING[1] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall2.png")
+
+#ATTACK 1 
+ATTACK1 = [None]*4
+ATTACK1[0] = arcade.load_texture(f"{PLAYER_PATH}/Attack1/Attack1.1.png")
+ATTACK1[1] = arcade.load_texture(f"{PLAYER_PATH}/Attack1/Attack1.2.png")
+ATTACK1[2] = arcade.load_texture(f"{PLAYER_PATH}/Attack1/Attack1.3.png")
+ATTACK1[3] = arcade.load_texture(f"{PLAYER_PATH}/Attack1/Attack1.4.png")
+
+#ATTACK 2 
+ATTACK2 = [None]*4
+ATTACK2[0] = arcade.load_texture(f"{PLAYER_PATH}/Attack2/Attack2.1.png")
+ATTACK2[1] = arcade.load_texture(f"{PLAYER_PATH}/Attack2/Attack2.2.png")
+ATTACK2[2] = arcade.load_texture(f"{PLAYER_PATH}/Attack2/Attack2.3.png")
+ATTACK2[3] = arcade.load_texture(f"{PLAYER_PATH}/Attack2/Attack2.4.png")
+
 
 # GROUND CONSTANTS
 
