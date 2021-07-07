@@ -1,4 +1,5 @@
 import arcade
+from arcade.key import A
 from core.action import Action
 from game import constants
 from core.cue import Cue
@@ -22,6 +23,9 @@ class ControlActorsAction(Action):
             if cue_info["key"] == arcade.key.RIGHT:
                 player = cast.first_actor("players")
                 player.walk(constants.MOVE_SPEED)
+            if cue_info["key"] == arcade.key.G:
+                player = cast.first_actor("players")
+                player.attack_one(True)
         elif cue_name == Cue.ON_KEY_RELEASE:
             if cue_info["key"] == arcade.key.LEFT:
                 player = cast.first_actor("players")
@@ -29,3 +33,6 @@ class ControlActorsAction(Action):
             if cue_info["key"] == arcade.key.RIGHT:
                 player = cast.first_actor("players")
                 player.walk(0)
+            if cue_info["key"] == arcade.key.G:
+                player = cast.first_actor("players")
+                player.attack_one(False)
