@@ -36,14 +36,24 @@ class Player(Actor):
         
         
     def _check_falling(self):
-        if self.change_y < -1:
+        if self.change_y < -1 and self.change_x < 0:
+            num_textures = len(constants.PLAYER_FALLING_LEFT)
+            self._current_frame = 0
+            self._texture_index = (self._texture_index + 1) % num_textures
+            self.texture = constants.PLAYER_FALLING_LEFT[self._texture_index]
+        elif self.change_y < -1:
             num_textures = len(constants.PLAYER_FALLING)
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
             self.texture = constants.PLAYER_FALLING[self._texture_index]
 
     def _check_jumping(self):
-        if self.change_y > 0:
+        if self.change_y > 0 and self.change_x < 0:
+            num_textures = len(constants.PLAYER_JUMPING_LEFT)
+            self._current_frame = 0
+            self._texture_index = (self._texture_index + 1) % num_textures
+            self.texture = constants.PLAYER_JUMPING_LEFT[self._texture_index]
+        elif self.change_y > 0:
             num_textures = len(constants.PLAYER_JUMPING)
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
@@ -57,13 +67,20 @@ class Player(Actor):
                 self._texture_index = (self._texture_index + 1) % num_textures
                 self.texture = constants.PLAYER_IDLE[self._texture_index]
     def _check_walking(self):
-        if self.change_x > 0 or self.change_x<0:
+        if self.change_x > 0:
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
                 num_textures = len(constants.PLAYER_WALKING)
                 self._current_frame = 0
                 self._texture_index = (self._texture_index + 1) % num_textures
                 self.texture = constants.PLAYER_WALKING[self._texture_index]
+        elif self.change_x < 0:
+            self._current_frame += 1
+            if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
+                num_textures = len(constants.PLAYER_WALKING_LEFT)
+                self._current_frame = 0
+                self._texture_index = (self._texture_index + 1) % num_textures
+                self.texture = constants.PLAYER_WALKING_LEFT[self._texture_index]
 
     def _update_position(self):
         self.change_y -= constants.GRAVITY   
