@@ -41,7 +41,6 @@ class Player(Actor):
         self._check_falling()
         self._check_attacking()
         
-        
     def _check_falling(self):
         if self.change_y < -1 and self.change_x < 0:
             num_textures = len(constants.PLAYER_FALLING_LEFT)
