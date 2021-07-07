@@ -33,6 +33,11 @@ class Player(Actor):
             self._is_attacking = attacking
         else:
             self._is_attacking = False
+    def attack_two(self,attacking):
+        if self._is_jumping == False:
+            self._is_attacking = attacking
+        else:
+            self._is_attacking = False
     def update(self):
         self._update_position()
         self._check_idle()
