@@ -12,8 +12,9 @@ class MoveActorsAction(Action):
         self._recycle_ground(cast)
         
     def _move_player(self, cast):
-        player = cast.first_actor("players")
-        player.update()
+        players = cast.get_actors("players")
+        for player in players:
+            player.update()
 
     def _move_ground(self, cast):
         grounds = cast.get_actors("grounds")

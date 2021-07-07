@@ -16,9 +16,12 @@ class GameScene(Scene):
     def __init__(self):
         
         # create the cast
-        player = Player()
+        player1 = Player()
+        player2 = Player()
+
         cast = Cast()
-        cast.add_actor("players", player)
+        cast.add_actor("players", player1)
+        cast.add_actor("players", player2)
 
         for i in range(10):
             ground = Ground()

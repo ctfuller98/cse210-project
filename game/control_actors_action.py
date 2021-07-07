@@ -13,19 +13,30 @@ class ControlActorsAction(Action):
         cue_info = cue.get_info()
         cue_name = cue.get_name()
         if cue_name == Cue.ON_KEY_PRESS:
+            player = cast.get_actors("players")[0]
             if cue_info["key"] == arcade.key.UP:
-                player = cast.first_actor("players")
                 player.jump()
             if cue_info["key"] == arcade.key.LEFT:
-                player = cast.first_actor("players")
                 player.walk(-1 * constants.MOVE_SPEED)
             if cue_info["key"] == arcade.key.RIGHT:
-                player = cast.first_actor("players")
+                player.walk(constants.MOVE_SPEED)
+
+            player = cast.get_actors("players")[1]
+            if cue_info["key"] == arcade.key.W:
+                player.jump()
+            if cue_info["key"] == arcade.key.A:
+                player.walk(-1 * constants.MOVE_SPEED)
+            if cue_info["key"] == arcade.key.D:
                 player.walk(constants.MOVE_SPEED)
         elif cue_name == Cue.ON_KEY_RELEASE:
+            player = cast.first_actor("players")
             if cue_info["key"] == arcade.key.LEFT:
-                player = cast.first_actor("players")
                 player.walk(0)
             if cue_info["key"] == arcade.key.RIGHT:
-                player = cast.first_actor("players")
+                player.walk(0)
+
+            player = cast.get_actors("players")[1]
+            if cue_info["key"] == arcade.key.A:
+                player.walk(0)
+            if cue_info["key"] == arcade.key.D:
                 player.walk(0)

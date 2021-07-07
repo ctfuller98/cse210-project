@@ -10,9 +10,10 @@ class HandleCollisionsAction(Action):
         self._handle_ground_collisions(cast)
 
     def _handle_ground_collisions(self, cast):
-        player = cast.first_actor("players")
-        grounds = cast.get_actors("grounds")
-        for ground in grounds:
-            if arcade.check_for_collision(player, ground):
-                player.bottom = ground.top
-                player.idle()    
+        players = cast.get_actors("players")
+        for player in players:
+            grounds = cast.get_actors("grounds")
+            for ground in grounds:
+                if arcade.check_for_collision(player, ground):
+                    player.bottom = ground.top
+                    player.idle()    
