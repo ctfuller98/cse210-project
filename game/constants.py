@@ -11,7 +11,7 @@ MOVE_SPEED = 3
 PLAYER_JUMP_SPEED = 15
 PLAYER_ANIMATION_RATE = 3
 PROJECT_ROOT = os.path.dirname(__file__)
-PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO/King Oxley Owens/Sprites")
+PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO/Sprites/King Oxley Owens")
 PLAYER_FALLING = [None] * 2 
 PLAYER_FALLING[0] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall1.png")
 PLAYER_FALLING[1] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall2.png")
@@ -26,9 +26,9 @@ PLAYER_IDLE[6] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle7.png")
 PLAYER_IDLE[7] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle8.png")
 
 #JUMPING
-PLAYER_JUMPING = [None] * 2
-PLAYER_JUMPING[0] = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump1.png")
-PLAYER_JUMPING[1] = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png")
+PLAYER_JUMPING= arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png")
+
+#WALKING
 PLAYER_WALKING = [None] * 8 
 PLAYER_WALKING[0] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run1.png")
 PLAYER_WALKING[1] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run2.png")
