@@ -77,7 +77,7 @@ class Player(Actor):
                 self.texture = constants.get_texture("PLAYER_WALKING", self.facing_left)[self._texture_index]
 
     def _check_attacking(self):
-        if self._is_attacking == True:
+        if self._is_attacking:
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
                 if self._texture_index == len(constants.ATTACK1) - 2:

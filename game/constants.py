@@ -14,14 +14,14 @@ PROJECT_ROOT = os.path.dirname(__file__)
 PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO/Sprites/King Oxley Owens")
 _ANIMATIONS = {}
 
-def _load_texture(name, filename, mirrored=False):
+def _load_texture(name, filename, path, mirrored=False):
     _ANIMATIONS[name] = {}
-    _ANIMATIONS[name][False] = arcade.load_texture(PLAYER_PATH + "/" + filename + ".png")
+    _ANIMATIONS[name][False] = arcade.load_texture(path + "/" + filename + ".png")
     if mirrored:
-        _ANIMATIONS[name][True] = arcade.load_texture(PLAYER_PATH + "/" + filename + ".png", flipped_horizontally=True)
+        _ANIMATIONS[name][True] = arcade.load_texture(path + "/" + filename + ".png", flipped_horizontally=True)
 
 # If mirrorred is true then a mirrored set of sprites is created
-def _load_texture_array(name, filename, count, mirrored=False):
+def _load_texture_array(name, filename, path, count, mirrored=False):
     # Create a second dictionary, this stores mirrored and unmirrored sprites
     _ANIMATIONS[name] = {}
     _ANIMATIONS[name][False] = []
@@ -29,10 +29,10 @@ def _load_texture_array(name, filename, count, mirrored=False):
         _ANIMATIONS[name][True] = []
 
     for index in range(1, count + 1):
-        _ANIMATIONS[name][False].append(arcade.load_texture(PLAYER_PATH + "/" + filename + str(index) + ".png"))
+        _ANIMATIONS[name][False].append(arcade.load_texture(path + "/" + filename + str(index) + ".png"))
         if mirrored:
             # Apparenetly mirrored is deprecated so that's why I'm using flipped_horizontally
-            _ANIMATIONS[name][True].append(arcade.load_texture(PLAYER_PATH + "/" + filename + str(index) + ".png", flipped_horizontally = True))
+            _ANIMATIONS[name][True].append(arcade.load_texture(path + "/" + filename + str(index) + ".png", flipped_horizontally = True))
 
 def get_texture(name, mirrored=False):
     return _ANIMATIONS[name][mirrored]
