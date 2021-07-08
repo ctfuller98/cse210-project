@@ -37,6 +37,7 @@ def _load_texture_array(name, filename, count, mirrored=False):
 def get_texture(name, mirrored=False):
     return _ANIMATIONS[name][mirrored]
 
+#(NAME OF ANIMATION , FILE PATH/FILE NAME, NUMBER OF FILES , MIRRORED?) 
 
 _load_texture_array("PLAYER_FALLING", "Fall/Fall", 2, True)
 
@@ -48,20 +49,10 @@ _load_texture_array("PLAYER_WALKING", "Run/Run", 8, True)
 
 #FALLING
 _load_texture_array("PLAYER_FALLING", "Fall/Fall", 2, True)
-
-#ATTACK 1 
-ATTACK1 = [None]*4
-ATTACK1[0] = arcade.load_texture(f"{PLAYER_PATH}/Attack1/Attack1.1.png")
-ATTACK1[1] = arcade.load_texture(f"{PLAYER_PATH}/Attack1/Attack1.2.png")
-ATTACK1[2] = arcade.load_texture(f"{PLAYER_PATH}/Attack1/Attack1.3.png")
-ATTACK1[3] = arcade.load_texture(f"{PLAYER_PATH}/Attack1/Attack1.4.png")
-
+#ATTACK 1
+_load_texture_array("ATTACK_ONE" "Attack1/Attack1.", 4, True)
 #ATTACK 2 
-ATTACK2 = [None]*4
-ATTACK2[0] = arcade.load_texture(f"{PLAYER_PATH}/Attack2/Attack2.1.png")
-ATTACK2[1] = arcade.load_texture(f"{PLAYER_PATH}/Attack2/Attack2.2.png")
-ATTACK2[2] = arcade.load_texture(f"{PLAYER_PATH}/Attack2/Attack2.3.png")
-ATTACK2[3] = arcade.load_texture(f"{PLAYER_PATH}/Attack2/Attack2.4.png")
+_load_texture_array("ATTACK_TWO" "Attack2/Attack2.", 4, True)
 
 
 # GROUND CONSTANTS
