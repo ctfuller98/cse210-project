@@ -7,62 +7,47 @@ CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
 GRAVITY = 1
 # ANIMAL CONSTANTS
-MOVE_SPEED = 3
+MOVE_SPEED = 6
 PLAYER_JUMP_SPEED = 15
 PLAYER_ANIMATION_RATE = 7
 PROJECT_ROOT = os.path.dirname(__file__)
 PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO/Sprites/King Oxley Owens")
-PLAYER_FALLING = [None] * 2 
-PLAYER_FALLING[0] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall1.png")
-PLAYER_FALLING[1] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall2.png")
-PLAYER_FALLING_LEFT = [None] * 2 
-PLAYER_FALLING_LEFT[0] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall1.png", mirrored=True)
-PLAYER_FALLING_LEFT[1] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall2.png", mirrored=True)
-PLAYER_IDLE = [None] * 8
-PLAYER_IDLE[0] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle1.png")
-PLAYER_IDLE[1] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle2.png")
-PLAYER_IDLE[2] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle3.png")
-PLAYER_IDLE[3] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle4.png")
-PLAYER_IDLE[4] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle5.png")
-PLAYER_IDLE[5] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle6.png")
-PLAYER_IDLE[6] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle7.png")
-PLAYER_IDLE[7] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle8.png")
-PLAYER_IDLE_LEFT = [None] * 8
-PLAYER_IDLE_LEFT[0] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle1.png", mirrored=True)
-PLAYER_IDLE_LEFT[1] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle2.png", mirrored=True)
-PLAYER_IDLE_LEFT[2] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle3.png", mirrored=True)
-PLAYER_IDLE_LEFT[3] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle4.png", mirrored=True)
-PLAYER_IDLE_LEFT[4] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle5.png", mirrored=True)
-PLAYER_IDLE_LEFT[5] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle6.png", mirrored=True)
-PLAYER_IDLE_LEFT[6] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle7.png", mirrored=True)
-PLAYER_IDLE_LEFT[7] = arcade.load_texture(f"{PLAYER_PATH}/Idle/Idle8.png", mirrored=True)
+_ANIMATIONS = {}
+
+def _load_texture(name, filename, mirrored=False):
+    _ANIMATIONS[name] = {}
+    _ANIMATIONS[name][False] = arcade.load_texture(PLAYER_PATH + "/" + filename + ".png")
+    if mirrored:
+        _ANIMATIONS[name][True] = arcade.load_texture(PLAYER_PATH + "/" + filename + ".png", flipped_horizontally=True)
+
+# If mirrorred is true then a mirrored set of sprites is created
+def _load_texture_array(name, filename, count, mirrored=False):
+    # Create a second dictionary, this stores mirrored and unmirrored sprites
+    _ANIMATIONS[name] = {}
+    _ANIMATIONS[name][False] = []
+    if mirrored:
+        _ANIMATIONS[name][True] = []
+
+    for index in range(1, count + 1):
+        _ANIMATIONS[name][False].append(arcade.load_texture(PLAYER_PATH + "/" + filename + str(index) + ".png"))
+        if mirrored:
+            # Apparenetly mirrored is deprecated so that's why I'm using flipped_horizontally
+            _ANIMATIONS[name][True].append(arcade.load_texture(PLAYER_PATH + "/" + filename + str(index) + ".png", flipped_horizontally = True))
+
+def get_texture(name, mirrored=False):
+    return _ANIMATIONS[name][mirrored]
+
+
+_load_texture_array("PLAYER_FALLING", "Fall/Fall", 2, True)
+
+_load_texture_array("PLAYER_IDLE", "Idle/Idle", 8, True)
 #JUMPING
-PLAYER_JUMPING= arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png")
-PLAYER_JUMPING_LEFT = arcade.load_texture(f"{PLAYER_PATH}/Jump/Jump2.png", mirrored=True)
+_load_texture("PLAYER_JUMPING", "Jump/Jump2", True)
 #WALKING
-PLAYER_WALKING = [None] * 8 
-PLAYER_WALKING[0] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run1.png", mirrored=False)
-PLAYER_WALKING[1] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run2.png", mirrored=False)
-PLAYER_WALKING[2] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run3.png", mirrored=False)
-PLAYER_WALKING[3] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run4.png", mirrored=False)
-PLAYER_WALKING[4] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run5.png", mirrored=False)
-PLAYER_WALKING[5] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run6.png", mirrored=False)
-PLAYER_WALKING[6] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run7.png", mirrored=False)
-PLAYER_WALKING[7] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run8.png", mirrored=False)
-PLAYER_WALKING_LEFT = [None] * 8 
-PLAYER_WALKING_LEFT[0] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run1.png", mirrored=True)
-PLAYER_WALKING_LEFT[1] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run2.png", mirrored=True)
-PLAYER_WALKING_LEFT[2] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run3.png", mirrored=True)
-PLAYER_WALKING_LEFT[3] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run4.png", mirrored=True)
-PLAYER_WALKING_LEFT[4] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run5.png", mirrored=True)
-PLAYER_WALKING_LEFT[5] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run6.png", mirrored=True)
-PLAYER_WALKING_LEFT[6] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run7.png", mirrored=True)
-PLAYER_WALKING_LEFT[7] = arcade.load_texture(f"{PLAYER_PATH}/Run/Run8.png", mirrored=True)
+_load_texture_array("PLAYER_WALKING", "Run/Run", 8, True)
 
 #FALLING
-PLAYER_FALLING = [None] * 2 
-PLAYER_FALLING[0] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall1.png")
-PLAYER_FALLING[1] = arcade.load_texture(f"{PLAYER_PATH}/Fall/Fall2.png")
+_load_texture_array("PLAYER_FALLING", "Fall/Fall", 2, True)
 
 #ATTACK 1 
 ATTACK1 = [None]*4
