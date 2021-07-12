@@ -25,4 +25,5 @@ class DrawActorsAction(Action):
         players = cast.get_actors("players")
         for player in players:
             player.draw()
+            player._draw_health_bar()
     

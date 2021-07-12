@@ -48,7 +48,6 @@ class Player(Actor):
         self._check_walking()
         self._check_falling()
         self._check_attacking()
-        self._draw_health_bar()
         
     def _check_falling(self):
         if self.change_y < -1:
@@ -99,11 +98,11 @@ class Player(Actor):
             arcade.draw_rectangle_filled(center_x=self.center_x,
                                          center_y=self.center_y + constants.HEALTHBAR_OFFSET_Y,
                                          width=constants.HEALTHBAR_WIDTH,
-                                         height=3,
+                                         height=constants.HEALTHBAR_HEIGHT,
                                          color=arcade.color.RED)
 
         # Calculate width based on health
-        health_width = constants.HEALTHBAR_WIDTH * (self.cur_health / self.max_health)
+        health_width = constants.HEALTHBAR_WIDTH * (self.current_health / self.max_health)
 
         arcade.draw_rectangle_filled(center_x=self.center_x - 0.5 * (constants.HEALTHBAR_WIDTH - health_width),
                                      center_y=self.center_y - 10,
