@@ -4,20 +4,21 @@ import arcade
 
 class Player(Actor):
 
-    def __init__(self):
+    def __init__(self, xposition, spriteindex, mirrored):
         super().__init__()
-        self.center_x = constants.CENTER_X
+        self.center_x = xposition
         self.center_y = constants.CENTER_Y
         self._is_jumping = False
         self._is_walking = False
         self._is_attacking = False
         self._current_frame = 0
         self._texture_index = 0
-        self.texture = constants.get_texture("PLAYER_IDLE")[0]
+        self.texture = constants.get_texture(spriteindex, "PLAYER_IDLE")[0]
         self.scale = 3
-        self.facing_left = True
+        self.facing_left = mirrored
         self.max_health = 100
         self.current_health = 100
+        self.spriteindex = spriteindex
         
     def jump(self):
         if not self._is_jumping:
@@ -64,35 +65,34 @@ class Player(Actor):
         self._check_attacking()
         
     def _check_falling(self):
-        if self.change_y < -1  and not self._is_attacking:
-            num_textures = len(constants.get_texture("PLAYER_FALLING"))
+        if self.change_y < -1  and not self._is_attacking::
+            num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_FALLING"))
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
-            self.texture = constants.get_texture("PLAYER_FALLING", self.facing_left)[self._texture_index]
+            self.texture = constants.get_texture(self.spriteindex, "PLAYER_FALLING", self.facing_left)[self._texture_index]
 
     def _check_jumping(self):
         if self.change_y > 0  and not self._is_attacking:
-            self.texture = constants.get_texture("PLAYER_JUMPING", self.facing_left)
-        
+            self.texture = constants.get_texture(self.spriteindex, "PLAYER_JUMPING", self.facing_left)
 
     def _check_idle(self):
         if self.change_x == 0 and self._is_attacking == False:
             self._is_walking = False 
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
-                num_textures = len(constants.get_texture("PLAYER_IDLE"))
+                num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_IDLE"))
                 self._current_frame = 0
                 self._texture_index = (self._texture_index + 1) % num_textures
-                self.texture = constants.get_texture("PLAYER_IDLE", self.facing_left)[self._texture_index]
+                self.texture = constants.get_texture(self.spriteindex, "PLAYER_IDLE", self.facing_left)[self._texture_index]
 
     def _check_walking(self):
         if self.change_x != 0 and not self._is_jumping and not self._is_attacking:
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
-                num_textures = len(constants.get_texture("PLAYER_WALKING"))
+                num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_WALKING"))
                 self._current_frame = 0
                 self._texture_index = (self._texture_index + 1) % num_textures
-                self.texture = constants.get_texture("PLAYER_WALKING", self.facing_left)[self._texture_index]
+                self.texture = constants.get_texture(self.spriteindex, "PLAYER_WALKING", self.facing_left)[self._texture_index]
 
     def _check_attacking(self):
         if self._is_attacking == True:
