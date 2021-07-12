@@ -60,3 +60,8 @@ _load_texture_array("ATTACK_TWO", "Attack2/Attack2.", 4, PLAYER_PATH, True)
 GROUND_MOVE_SPEED = -8
 GROUND_PATH = ":resources:images/tiles"
 GROUND_GRASS = arcade.load_texture(f"{GROUND_PATH}/grass.png")
+
+# HEALTH CONSTANTS
+
+HEALTHBAR_WIDTH = 200
+HEALTHBAR_HEIGHT = 30

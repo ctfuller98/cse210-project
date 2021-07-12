@@ -23,6 +23,7 @@ class ControlActorsAction(Action):
                 self.input_x1 -= 1
             if cue_info["key"] == arcade.key.RIGHT:
                 self.input_x1 += 1
+                player.current_health = 50   #Remove this later, it's just in to test the updating of health, presently walking right damages the player.
             player.walk(self.input_x1 * constants.MOVE_SPEED)
 
             player = cast.get_actors("players")[1]

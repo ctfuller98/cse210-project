@@ -1,6 +1,6 @@
 from core.actor import Actor
 from game import constants
-
+import arcade
 
 class Player(Actor):
 
@@ -16,6 +16,8 @@ class Player(Actor):
         self.texture = constants.get_texture("PLAYER_IDLE")[0]
         self.scale = 3
         self.facing_left = True
+        self.max_health = 100
+        self.current_health = 100
         
     def jump(self):
         if not self._is_jumping:
@@ -38,6 +40,7 @@ class Player(Actor):
             self._is_attacking = attacking
         else:
             self._is_attacking = False
+
     def update(self):
         self._update_position()
         self._check_idle()
@@ -87,6 +90,26 @@ class Player(Actor):
                 self._texture_index = (self._texture_index + 1) % num_textures
                 self.texture = constants.ATTACK1[self._texture_index]
 
+    def _draw_health_bar(self,mirrored):
+        """ Draw the health bar """
+
+        # Draw the 'unhealthy' background (The mirrored variable is either zero or one, it is an int so it can be used in the math for positioning player 2's healthbar, but not player 1's)
+        if self.current_health < self.max_health:
+            arcade.draw_rectangle_filled(center_x=constants.HEALTHBAR_WIDTH / 2 + mirrored * (constants.SCREEN_WIDTH - constants.HEALTHBAR_WIDTH),
+                                         center_y=constants.SCREEN_HEIGHT - constants.HEALTHBAR_HEIGHT /2,
+                                         width=constants.HEALTHBAR_WIDTH,
+                                         height=constants.HEALTHBAR_HEIGHT,
+                                         color=arcade.color.RED)
+
+        # Calculate width based on health (See the above note on the unhealth background for what the mirrored variable does for the center_x value)
+        health_width = constants.HEALTHBAR_WIDTH * (self.current_health / self.max_health)
+
+        arcade.draw_rectangle_filled(center_x=health_width / 2 + mirrored * (constants.SCREEN_WIDTH - constants.HEALTHBAR_WIDTH),
+                                     center_y=constants.SCREEN_HEIGHT - constants.HEALTHBAR_HEIGHT /2,
+                                     width=health_width,
+                                     height=constants.HEALTHBAR_HEIGHT,
+                                     color=arcade.color.GREEN)
+   
     def _update_position(self):
         self.change_y -= constants.GRAVITY   
         self.center_y += self.change_y
