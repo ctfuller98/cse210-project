@@ -10,5 +10,5 @@ class Instruction(Actor):
     def draw(self):
         start_x = constants.CENTER_X
         start_y = constants.SCREEN_HEIGHT - 50
-        arcade.draw_text("Press 'SPACE' to jump!", start_x, start_y, 
+        arcade.draw_text("FIGHT!", start_x, start_y, 
             arcade.color.WHITE, 12, anchor_x="center")
