@@ -63,9 +63,9 @@ _load_texture_array(1, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH_TWO, True)
 #FALLING
 _load_texture_array(1, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH_TWO, True)
 #ATTACK 1
-_load_texture_array(1, "ATTACK_ONE", "Attack1/Attack1.", 4, PLAYER_PATH_TWO, True)
+_load_texture_array(1, "ATTACK_ONE", "Attack1/Attack1.", 7, PLAYER_PATH_TWO, True)
 #ATTACK 2 
-_load_texture_array(1, "ATTACK_TWO", "Attack2/Attack2.", 4, PLAYER_PATH_TWO, True)
+_load_texture_array(1, "ATTACK_TWO", "Attack2/Attack2.", 6, PLAYER_PATH_TWO, True)
 
 # GROUND CONSTANTS
 

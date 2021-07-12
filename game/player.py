@@ -65,7 +65,7 @@ class Player(Actor):
         self._check_attacking()
         
     def _check_falling(self):
-        if self.change_y < -1  and not self._is_attacking::
+        if self.change_y < -1  and not self._is_attacking:
             num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_FALLING"))
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
@@ -98,12 +98,12 @@ class Player(Actor):
         if self._is_attacking == True:
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
-                if self._texture_index == len(constants.get_texture("ATTACK_ONE")) - 2:
+                if self._texture_index == len(constants.get_texture(self.spriteindex, "ATTACK_ONE")) - 2:
                     self._is_attacking = False
-                num_textures = len(constants.get_texture("ATTACK_ONE"))
+                num_textures = len(constants.get_texture(self.spriteindex, "ATTACK_ONE"))
                 self._current_frame = 0
                 self._texture_index = (self._texture_index + 1) % num_textures
-                self.texture = constants.get_texture("ATTACK_ONE", self.facing_left)[self._texture_index]
+                self.texture = constants.get_texture(self.spriteindex, "ATTACK_ONE", self.facing_left)[self._texture_index]
 
     def _draw_health_bar(self,mirrored):
         """ Draw the health bar """
