@@ -10,6 +10,7 @@ class DrawActorsAction(Action):
         self._draw_player(cast)
         self._draw_ground(cast)
         self._draw_instructions(cast)
+        self._draw_health_bars(cast)
         
     def _draw_ground(self, cast):
         grounds = cast.get_actors("grounds")
@@ -25,5 +26,11 @@ class DrawActorsAction(Action):
         players = cast.get_actors("players")
         for player in players:
             player.draw()
-            player._draw_health_bar()
+    
+    #If there's a more elegant way to draw the two healthbars differently, I'd be welcome to hearing it. -Braxton
+    def _draw_health_bars(self, cast):
+        player = cast.get_actors("players")[0]
+        player._draw_health_bar(0)
+        player = cast.get_actors("players")[1]
+        player._draw_health_bar(1)    
     
