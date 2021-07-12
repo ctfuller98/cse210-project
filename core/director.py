@@ -7,6 +7,7 @@ class Director(arcade.Window, Action.Callback):
     
     def __init__(self, screen_width, screen_height):
         super().__init__(screen_width, screen_height)
+        arcade.set_background_color(arcade.color.BLUE_YONDER)
         self._scene = None
         
     def direct_scene(self, scene):

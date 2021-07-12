@@ -14,7 +14,7 @@ class Player(Actor):
         self._current_frame = 0
         self._texture_index = 0
         self.texture = constants.get_texture("PLAYER_IDLE")[0]
-        self.scale = 3
+        self.scale = 1
         self.facing_left = True
         
     def jump(self):
