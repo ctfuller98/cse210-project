@@ -9,45 +9,51 @@ class ControlActorsAction(Action):
     
     def __init__(self):
         super().__init__()
-        self.input_x1 = 0
-        self.input_x2 = 0
+        self.input_1 = {"x":0}
+        self.input_2 = {"x":0}
 
     def execute(self, cast, cue, callback):
         cue_info = cue.get_info()
         cue_name = cue.get_name()
+        self.update_player(cue, cast.get_actors("players")[0], {
+            "jump" : arcade.key.W,
+            "left" : arcade.key.A,
+            "right" : arcade.key.D,
+            "attack_up" : arcade.key.C,
+            "attack_forward" : arcade.key.X,
+            "attack_down" : arcade.key.Z
+        }, self.input_1)
+        self.update_player(cue, cast.get_actors("players")[1], {
+            "jump" : arcade.key.I,
+            "left" : arcade.key.J,
+            "right" : arcade.key.L,
+            "attack_up" : arcade.key.M,
+            "attack_forward" : arcade.key.COMMA,
+            "attack_down" : arcade.key.PERIOD
+        }, self.input_2)
+        
+
+    def update_player(self, cue, player, keyset, persistant_data):
+        cue_info = cue.get_info()
+        cue_name = cue.get_name()
         if cue_name == Cue.ON_KEY_PRESS:
-            player = cast.get_actors("players")[0]
-            if cue_info["key"] == arcade.key.UP:
+            if cue_info["key"] == keyset["jump"]:
                 player.jump()
-            if cue_info["key"] == arcade.key.LEFT:
-                self.input_x1 -= 1
-            if cue_info["key"] == arcade.key.RIGHT:
-                self.input_x1 += 1
-            player.walk(self.input_x1 * constants.MOVE_SPEED)
-
-            player = cast.get_actors("players")[1]
-            if cue_info["key"] == arcade.key.W:
-                player.jump()
-            if cue_info["key"] == arcade.key.A:
-                self.input_x2 -= 1
-            if cue_info["key"] == arcade.key.D:
-                self.input_x2 += 1
-            player.walk(self.input_x2 * constants.MOVE_SPEED)
-
-            if cue_info["key"] == arcade.key.NUM_1:
-                player = cast.first_actor("players")
-                player.attack_one(True)
+            if cue_info["key"] == keyset["left"]:
+                persistant_data["x"] -= 1
+            if cue_info["key"] == keyset["right"]:
+                persistant_data["x"] += 1
+            if cue_info["key"] == keyset["attack_up"]:
+                player.attack_up(True)
+            if cue_info["key"] == keyset["attack_forward"]:
+                player.attack_forward(True)
+            if cue_info["key"] == keyset["attack_down"]:
+                player.attack_down(True)
+            
+            player.walk(persistant_data["x"] * constants.MOVE_SPEED)
         elif cue_name == Cue.ON_KEY_RELEASE:
-            player = cast.first_actor("players")
-            if cue_info["key"] == arcade.key.LEFT:
-                self.input_x1 += 1
-            if cue_info["key"] == arcade.key.RIGHT:
-                self.input_x1 -= 1
-            player.walk(self.input_x1 * constants.MOVE_SPEED)
-
-            player = cast.get_actors("players")[1]
-            if cue_info["key"] == arcade.key.A:
-                self.input_x2 += 1
-            if cue_info["key"] == arcade.key.D:
-                self.input_x2 -= 1
-            player.walk(self.input_x2 * constants.MOVE_SPEED)
+            if cue_info["key"] == keyset["left"]:
+                persistant_data["x"] += 1
+            if cue_info["key"] == keyset["right"]:
+                persistant_data["x"] -= 1
+            player.walk(persistant_data["x"] * constants.MOVE_SPEED)
