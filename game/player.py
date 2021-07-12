@@ -1,6 +1,6 @@
 from core.actor import Actor
 from game import constants
-
+import arcade
 
 class Player(Actor):
 
@@ -16,6 +16,8 @@ class Player(Actor):
         self.texture = constants.get_texture("PLAYER_IDLE")[0]
         self.scale = 3
         self.facing_left = True
+        self.max_health = 100
+        self.current_health = 100
         
     def jump(self):
         if not self._is_jumping:
@@ -38,6 +40,7 @@ class Player(Actor):
             self._is_attacking = attacking
         else:
             self._is_attacking = False
+
     def update(self):
         self._update_position()
         self._check_idle()
@@ -45,6 +48,7 @@ class Player(Actor):
         self._check_walking()
         self._check_falling()
         self._check_attacking()
+        self._draw_health_bar()
         
     def _check_falling(self):
         if self.change_y < -1:
@@ -87,6 +91,26 @@ class Player(Actor):
                 self._texture_index = (self._texture_index + 1) % num_textures
                 self.texture = constants.ATTACK1[self._texture_index]
 
+    def _draw_health_bar(self):
+        """ Draw the health bar """
+
+        # Draw the 'unhealthy' background
+        if self.current_health < self.max_health:
+            arcade.draw_rectangle_filled(center_x=self.center_x,
+                                         center_y=self.center_y + constants.HEALTHBAR_OFFSET_Y,
+                                         width=constants.HEALTHBAR_WIDTH,
+                                         height=3,
+                                         color=arcade.color.RED)
+
+        # Calculate width based on health
+        health_width = constants.HEALTHBAR_WIDTH * (self.cur_health / self.max_health)
+
+        arcade.draw_rectangle_filled(center_x=self.center_x - 0.5 * (constants.HEALTHBAR_WIDTH - health_width),
+                                     center_y=self.center_y - 10,
+                                     width=health_width,
+                                     height=constants.HEALTHBAR_HEIGHT,
+                                     color=arcade.color.GREEN)
+   
     def _update_position(self):
         self.change_y -= constants.GRAVITY   
         self.center_y += self.change_y
