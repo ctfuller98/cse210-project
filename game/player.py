@@ -35,12 +35,26 @@ class Player(Actor):
         self.change_x = speed
         if(speed != 0):
             self.facing_left = speed < 0
+       
 
-    def attack_one(self,attacking):
-        if self._is_jumping == False and self._is_walking == False:
-            self._is_attacking = attacking
-        else:
-            self._is_attacking = False
+    def attack_up(self,attacking):
+        self._texture_index = 0
+        self._is_attacking = attacking
+        self._attack_index = 0
+
+    def attack_forward(self, attacking):
+        self._texture_index = 0
+        self._is_attacking = attacking
+        self._attack_index = 1
+        print("forward attack")
+
+    def attack_down(self, attacking):
+        self._texture_index = 0
+        self._is_attacking = attacking
+        self._attack_index = 2
+        if not self._is_jumping:
+            self.change_x = 0
+        print("downward attack")
 
     def update(self):
         self._update_position()
@@ -51,14 +65,14 @@ class Player(Actor):
         self._check_attacking()
         
     def _check_falling(self):
-        if self.change_y < -1:
+        if self.change_y < -1  and not self._is_attacking::
             num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_FALLING"))
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
             self.texture = constants.get_texture(self.spriteindex, "PLAYER_FALLING", self.facing_left)[self._texture_index]
 
     def _check_jumping(self):
-        if self.change_y > 0:
+        if self.change_y > 0  and not self._is_attacking:
             self.texture = constants.get_texture(self.spriteindex, "PLAYER_JUMPING", self.facing_left)
 
     def _check_idle(self):
@@ -72,7 +86,7 @@ class Player(Actor):
                 self.texture = constants.get_texture(self.spriteindex, "PLAYER_IDLE", self.facing_left)[self._texture_index]
 
     def _check_walking(self):
-        if self.change_x != 0 and not self._is_jumping:
+        if self.change_x != 0 and not self._is_jumping and not self._is_attacking:
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
                 num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_WALKING"))
@@ -84,12 +98,12 @@ class Player(Actor):
         if self._is_attacking == True:
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
-                if self._texture_index == len(constants.ATTACK1) - 2:
+                if self._texture_index == len(constants.get_texture("ATTACK_ONE")) - 2:
                     self._is_attacking = False
-                num_textures = len(constants.ATTACK1)
+                num_textures = len(constants.get_texture("ATTACK_ONE"))
                 self._current_frame = 0
                 self._texture_index = (self._texture_index + 1) % num_textures
-                self.texture = constants.ATTACK1[self._texture_index]
+                self.texture = constants.get_texture("ATTACK_ONE", self.facing_left)[self._texture_index]
 
     def _draw_health_bar(self,mirrored):
         """ Draw the health bar """
@@ -114,4 +128,5 @@ class Player(Actor):
     def _update_position(self):
         self.change_y -= constants.GRAVITY   
         self.center_y += self.change_y
-        self.center_x += self.change_x
+        if not (self._is_attacking and not self._is_jumping):
+            self.center_x += self.change_x
