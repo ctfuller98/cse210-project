@@ -16,8 +16,8 @@ class GameScene(Scene):
     def __init__(self):
         
         # create the cast
-        player1 = Player()
-        player2 = Player()
+        player1 = Player(100, 0, False)
+        player2 = Player(700, 1, True)
 
         cast = Cast()
         cast.add_actor("players", player1)
