@@ -55,7 +55,7 @@ _load_texture_array(0, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH, True)
 _load_texture_array(0, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH, True)
 #SIDE ATTACK
 _load_texture_array(0, "ATTACK_ONE", "Attack1/Attack1.", 4, PLAYER_PATH, True)
-#ATTACK 2 
+#UP ATTACK
 _load_texture_array(0, "ATTACK_TWO", "Attack2/Attack2.", 4, PLAYER_PATH, True)
 #DOWN ATTACK
 _load_texture_array(0, "ATTACK_THREE", "Attack3/Attack3.", 4, PLAYER_PATH, True)
