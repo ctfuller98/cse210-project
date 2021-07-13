@@ -92,6 +92,6 @@ HEALTHBAR_HEIGHT = 6
 DEFAULT_ATTACK_DAMAGE = 25
 ATTACK_FRAME = {
     "ATTACK_ONE" : [2,6],
-    "ATTACK_TWO" : [2,6], # Needs to be set
+    "ATTACK_TWO" : [2,3], # Needs to be set
     "ATTACK_THREE" : [2,6], # Needs to be set
 }
