@@ -8,7 +8,6 @@ class HandleCollisionsAction(Action):
 
     def execute(self, cast, cue, callback):
         self._handle_ground_collisions(cast)
-        
 
     def _handle_ground_collisions(self, cast):
         players = cast.get_actors("players")
