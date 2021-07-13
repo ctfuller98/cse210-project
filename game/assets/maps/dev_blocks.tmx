@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" name="dev_blocks" tilewidth="16" tileheight="16" tilecount="16" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
@@ -273,6 +273,11 @@
  <layer id="2" name="Background" width="64" height="32">
   <data encoding="base64" compression="zlib">
    eJzt1MEJgDAMQNEspT1bHaD7T6NCD1IMKEgiyX8Qes2ntCIAAAAAAAAA8L2ln7VPNmd/FfrHKZ5LGdL6V8+lDGn9m+dShrL1T8fMl7lrj9yv3fc4TWL+gU/7o/6Bb/ojvoHs/X+0A5AMGAY=
+  </data>
+ </layer>
+ <layer id="4" name="Center" width="64" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7Bpw78oTCzhoFXQBAAAAAAAAKBrrgPw0AIE/wBD
   </data>
  </layer>
  <layer id="1" name="Platforms" width="64" height="32">
