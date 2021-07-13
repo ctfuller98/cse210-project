@@ -1,3 +1,4 @@
+from game import handle_attack_collisions_action
 from core.cast import Cast
 from core.cue import Cue
 from core.scene import Scene
