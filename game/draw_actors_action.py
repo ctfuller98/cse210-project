@@ -11,6 +11,7 @@ class DrawActorsAction(Action):
         self._draw_player(cast)
         #self._draw_ground(cast)
         self._draw_instructions(cast)
+        self._draw_health_bars(cast)
 
         
         
