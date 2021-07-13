@@ -66,6 +66,8 @@ _load_texture_array(1, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH_TWO, True)
 _load_texture_array(1, "ATTACK_ONE", "Attack1/Attack1.", 7, PLAYER_PATH_TWO, True)
 #ATTACK 2 
 _load_texture_array(1, "ATTACK_TWO", "Attack2/Attack2.", 6, PLAYER_PATH_TWO, True)
+#DOWN ATTACK
+_load_texture_array(1, "ATTACK_THREE", "Attack3/Attack3.", 7, PLAYER_PATH_TWO, True)
 
 # GROUND CONSTANTS
 
@@ -77,7 +79,6 @@ GROUND_GRASS = arcade.load_texture(f"{GROUND_PATH}/grass.png")
 
 HEALTHBAR_WIDTH = 50
 HEALTHBAR_HEIGHT = 6
-
 
 # ATTACK CONSTANTS
 
