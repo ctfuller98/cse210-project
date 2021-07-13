@@ -40,13 +40,12 @@ class Player(Actor):
     def attack_up(self,attacking):
         self._texture_index = 0
         self._is_attacking = attacking
-        self._attack_index = 0
+        self._attack_index = 1
 
     def attack_forward(self, attacking):
         self._texture_index = 0
         self._is_attacking = attacking
-        self._attack_index = 1
-        print("forward attack")
+        self._attack_index = 0
 
     def attack_down(self, attacking):
         self._texture_index = 0
@@ -54,7 +53,6 @@ class Player(Actor):
         self._attack_index = 2
         if not self._is_jumping:
             self.change_x = 0
-        print("downward attack")
 
     def update(self):
         self._update_position()
@@ -97,13 +95,14 @@ class Player(Actor):
     def _check_attacking(self):
         if self._is_attacking == True:
             self._current_frame += 1
+            attacks = ["ATTACK_ONE", "ATTACK_TWO", "ATTACK_THREE"]
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
-                if self._texture_index == len(constants.get_texture(self.spriteindex, "ATTACK_ONE")) - 2:
+                if self._texture_index == len(constants.get_texture(self.spriteindex, attacks[self._attack_index])) - 2:
                     self._is_attacking = False
-                num_textures = len(constants.get_texture(self.spriteindex, "ATTACK_ONE"))
+                num_textures = len(constants.get_texture(self.spriteindex, attacks[self._attack_index]))
                 self._current_frame = 0
                 self._texture_index = (self._texture_index + 1) % num_textures
-                self.texture = constants.get_texture(self.spriteindex, "ATTACK_ONE", self.facing_left)[self._texture_index]
+                self.texture = constants.get_texture(self.spriteindex, attacks[self._attack_index], self.facing_left)[self._texture_index]
 
     def _draw_health_bar(self,mirrored):
         """ Draw the health bar """
