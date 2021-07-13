@@ -11,6 +11,7 @@ MOVE_SPEED = 6
 PLAYER_JUMP_SPEED = 15
 PLAYER_ANIMATION_RATE = 7
 PROJECT_ROOT = os.path.dirname(__file__)
+print(PROJECT_ROOT)
 PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO")
 PLAYER_PATH_TWO = os.path.join(PROJECT_ROOT, "assets/SING")
 _ANIMATIONS = [{}, {}]
