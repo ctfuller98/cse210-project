@@ -272,7 +272,7 @@
  </tileset>
  <layer id="2" name="Background" width="64" height="32">
   <data encoding="base64" compression="zlib">
-   eJzt1MEJgDAMQNEspT1bHaD7T6NCD1IMKEgiyX8Qes2ntCIAAAAAAAAA8L2ln7VPNmd/FfrHKZ5LGdL6V8+lDGn9m+dShrL1T8fMl7lrj9yv3fc4TWL+gU/7o/6Bb/ojvoHs/X+0A5AMGAY=
+   eJztl0EOgkAMRedSILpT2Rq5/2lkdk2TigjtH+h/yV+xaB9lGqYUQgghJB8PhzxDDbZBf/rvmWHOO9RgG5lnX5G9XxdyK+eavaZbeP4q39/B0Wb/D/UdWN/HkWdPSFbkDruAe0GQbYdrUP53VR8F0l/WRtGKP2oHydrTnD6oB8s/egeherD8x4Dakuz+Gi//er/qRax7VAv+HnvAmrfOtHPdtXidg1/90f9hLfijz4AH2f1b5ANJPEsV
   </data>
  </layer>
  <layer id="4" name="Center" width="64" height="32">
@@ -282,7 +282,7 @@
  </layer>
  <layer id="1" name="Platforms" width="64" height="32">
   <data encoding="base64" compression="zlib">
-   eJzt1MsKwjAQheF5hdqFF6S4EHEhra6ta9//jZyCizBEkkpjUvt/cDYlhTllUhEAAAAAAABM5alZazYR2WaaMbWz5hjITnPLNWBiMf1P2aZLr9NcPdnLMvp/4u7FEvu7ezGnu3/XPCKeASVamdSB88Nu9+/8w443Joes0/we/afvX0n4HpXC9r/I+H/CoHLOtzKfPbL9ffF9E5v2i3dKyAt2nRJZ
+   eJztl88OgjAMh/sK6EFFYzyg8WDwz1U9q+//Qm7JEpZmMkDWlbRf8ruQkfSDrrAKAKpE2QN/Urmrv/qrP3/UX7Z/aXJJlCuhx1AOuQvIjPrLRv378zJ5o3zGLIqQm8nSZZW5lhz432uJe0H91Z/K387NBTTzpi1Us8j+/65dKP5XjxA/N5REtVioe76LP2VN1P5nCJ+VNiDD/xd+X0j09/uC8tz8r//d5NnhGle4vP9cSPefocwj621vP1ym0uNtbFF2WauhR/3H9y8gvo+4gP1P0H8mWApvfQ3T6SPsH0romeDUA+7hkC/HlDUn
   </data>
  </layer>
 </map>
