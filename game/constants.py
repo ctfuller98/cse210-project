@@ -11,8 +11,12 @@ MOVE_SPEED = 6
 PLAYER_JUMP_SPEED = 15
 PLAYER_ANIMATION_RATE = 7
 PROJECT_ROOT = os.path.dirname(__file__)
+<<<<<<< HEAD
 PLAYER_SOUND = os.path.join(PROJECT_ROOT, "assets/KOO/Sounds")
 PLAYER_TWO_SOUND = os.path.join(PROJECT_ROOT, "assets/SING/Sounds")
+=======
+print(PROJECT_ROOT)
+>>>>>>> 5a2dc85d8d99036cd88f9c35aebacbb1cdbb559a
 PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO")
 PLAYER_PATH_TWO = os.path.join(PROJECT_ROOT, "assets/SING")
 MUSIC_PATH = os.path.join(PROJECT_ROOT, "assets/Bkgmusic")
@@ -84,5 +88,5 @@ GROUND_GRASS = arcade.load_texture(f"{GROUND_PATH}/grass.png")
 
 # HEALTH CONSTANTS
 
-HEALTHBAR_WIDTH = 200
-HEALTHBAR_HEIGHT = 30
+HEALTHBAR_WIDTH = 50
+HEALTHBAR_HEIGHT = 6
