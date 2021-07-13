@@ -58,4 +58,3 @@ class Map():
 
         self._background.draw()
         self._platforms.draw()
-
