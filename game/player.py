@@ -47,7 +47,6 @@ class Player(Actor):
         self._texture_index = 0
         self._is_attacking = attacking
         self._attack_index = 0
-        print("forward attack")
 
     def attack_down(self, attacking):
         self._texture_index = 0
@@ -55,7 +54,6 @@ class Player(Actor):
         self._attack_index = 2
         if not self._is_jumping:
             self.change_x = 0
-        print("downward attack")
 
     def update(self):
         self._update_position()
