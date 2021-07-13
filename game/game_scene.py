@@ -26,8 +26,13 @@ class GameScene(Scene):
         cast.add_actor("players", player1)
         cast.add_actor("players", player2)
         
-        instruction = Instruction()
-        cast.add_actor("instructions", instruction)
+        for i in range(10):
+            ground = Ground()
+            ground.left = (i * ground.width)
+            cast.add_actor("grounds", ground)
+        
+        #instruction = Instruction()
+        #cast.add_actor("instructions", instruction)
 
   # create the script
         control_actors_action = ControlActorsAction()
