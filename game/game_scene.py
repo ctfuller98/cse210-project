@@ -11,6 +11,7 @@ from game.control_actors_action import ControlActorsAction
 from game.draw_actors_action import DrawActorsAction
 from game.move_actors_action import MoveActorsAction
 from game.map import Map
+from game.handle_attack_collisions_action import HandleAttackCollisionsAction
 
 class GameScene(Scene):
 
