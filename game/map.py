@@ -57,4 +57,4 @@ class Map():
         arcade.draw_lrwh_rectangle_textured(self.scroll_x + (constants.SCREEN_WIDTH * 0.03 * x_ratio) - constants.SCREEN_WIDTH * 0.03, self.scroll_y , constants.SCREEN_WIDTH * 1.06 , constants.SCREEN_HEIGHT , self._background_images[2])
 
         self._background.draw()
-        self._platforms.draw())
+        self._platforms.draw()
