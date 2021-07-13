@@ -44,11 +44,13 @@ def get_texture(spriteindex, name, mirrored=False):
 
 #----------------------------PLAYER ONE-----------------------------#
 #IDLE
+_load_texture_array(0, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH)
 _load_texture_array(0, "PLAYER_IDLE", "Idle/Idle", 8, PLAYER_PATH, True)
 #JUMPING
 _load_texture(0, "PLAYER_JUMPING", "Jump/Jump2", PLAYER_PATH, True)
 #WALKING
 _load_texture_array(0, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH, True)
+
 #FALLING
 _load_texture_array(0, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH, True)
 #SIDE ATTACK
@@ -67,6 +69,7 @@ _load_texture_array(1, "PLAYER_IDLE", "Idle/Idle", 8, PLAYER_PATH_TWO, True)
 _load_texture(1, "PLAYER_JUMPING", "Jump/Jump2", PLAYER_PATH_TWO, True)
 #WALKING
 _load_texture_array(1, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH_TWO, True)
+
 #FALLING
 _load_texture_array(1, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH_TWO, True)
 #SIDE ATTACK
