@@ -37,8 +37,8 @@ class GameScene(Scene):
   # create the script
         control_actors_action = ControlActorsAction()
         move_actors_action = MoveActorsAction()
-        handle_attack_collisions_action = HandleAttackCollisionsAction()
         handle_collisions_action = HandleCollisionsAction()
+        handle_attack_collisions_action = HandleAttackCollisionsAction()
         draw_actors_action = DrawActorsAction()
 
         script = Script()
