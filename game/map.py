@@ -45,11 +45,15 @@ class Map():
         
         arcade.set_viewport(self.scroll_x, self.scroll_x + constants.SCREEN_WIDTH, self.scroll_y ,self.scroll_y + constants.SCREEN_HEIGHT)
         
-        p_counter = 1
 
-        for x in self._background_images:
-            arcade.draw_lrwh_rectangle_textured(self.scroll_x // p_counter , self.scroll_y, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, x)
-            p_counter += 1
+        x_ratio = self.scroll_x / 208
+        x_ratio -= 0.5
+
+        print(constants.SCREEN_WIDTH * 0.05 * x_ratio)
+
+        arcade.draw_lrwh_rectangle_textured(self.scroll_x , self.scroll_y , constants.SCREEN_WIDTH , constants.SCREEN_HEIGHT , self._background_images[0])
+        arcade.draw_lrwh_rectangle_textured(self.scroll_x + (constants.SCREEN_WIDTH * 0.025 * x_ratio) - constants.SCREEN_WIDTH * 0.025, self.scroll_y , constants.SCREEN_WIDTH * 1.05 , constants.SCREEN_HEIGHT , self._background_images[1])
+
 
         for tile in self._background:
             tile.draw()
