@@ -79,7 +79,7 @@ _load_texture_array(1, "ATTACK_TWO", "Attack2/Attack2.", 6, PLAYER_PATH_TWO, Tru
 #DOWN ATTACK
 _load_texture_array(1, "ATTACK_THREE", "Attack3/Attack3.", 7, PLAYER_PATH_TWO, True)
 
-# GROUND CONSTANTS
+#-------------------------GROUND CONSTANTS---------------------------#
 
 GROUND_MOVE_SPEED = -8
 GROUND_PATH = ":resources:images/tiles"
