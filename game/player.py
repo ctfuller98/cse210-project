@@ -54,7 +54,15 @@ class Player(Actor):
         self._attack_index = 2
         if not self._is_jumping:
             self.change_x = 0
+    
+    def is_hitting(self):
+        is_hitting = self._is_hitting
+        self._is_hitting = False
+        return is_hitting
 
+    def damage(self, damage):
+        self.current_health = min(max(self.current_health - damage, 0), self.max_health)  
+            
     def update(self):
         self._update_position()
         self._check_idle()
