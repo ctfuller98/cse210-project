@@ -77,3 +77,13 @@ GROUND_GRASS = arcade.load_texture(f"{GROUND_PATH}/grass.png")
 
 HEALTHBAR_WIDTH = 50
 HEALTHBAR_HEIGHT = 6
+
+
+# ATTACK CONSTANTS
+
+DEFAULT_ATTACK_DAMAGE = 25
+ATTACK_FRAME = {
+    "ATTACK_ONE" : [2,6],
+    "ATTACK_TWO" : [2,6], # Needs to be set
+    "ATTACK_THREE" : [2,6], # Needs to be set
+}
