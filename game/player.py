@@ -115,6 +115,8 @@ class Player(Actor):
                 self._texture_index = (self._texture_index + 1) % num_textures
                 if last_index != self._texture_index and self._texture_index == constants.ATTACK_FRAME[attacks[self._attack_index]][self.spriteindex]:
                     self._is_hitting = True
+                else:
+                    self._is_hitting = False
                 self.texture = constants.get_texture(self.spriteindex, attacks[self._attack_index], self.facing_left)[self._texture_index]
 
     def _draw_health_bar(self,mirrored):
