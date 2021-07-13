@@ -1,6 +1,6 @@
 import arcade
 from game import constants, player
-
+import timeit
 class Map():
     
     def __init__(self, map_name, scene):
@@ -35,6 +35,9 @@ class Map():
         scene.get_cast().add_actor("map", self)
 
     def draw(self):
+        
+        start_time = timeit.default_timer()
+
         players = self._scene.get_cast().get_actors("players")
         self.scroll_x = (players[0].center_x + players[1].center_x) // 2 - constants.SCREEN_WIDTH // 2
         
@@ -53,9 +56,6 @@ class Map():
         arcade.draw_lrwh_rectangle_textured(self.scroll_x + (constants.SCREEN_WIDTH * 0.02 * x_ratio) - constants.SCREEN_WIDTH * 0.02, self.scroll_y , constants.SCREEN_WIDTH * 1.05 , constants.SCREEN_HEIGHT , self._background_images[1])
         arcade.draw_lrwh_rectangle_textured(self.scroll_x + (constants.SCREEN_WIDTH * 0.03 * x_ratio) - constants.SCREEN_WIDTH * 0.03, self.scroll_y , constants.SCREEN_WIDTH * 1.06 , constants.SCREEN_HEIGHT , self._background_images[2])
 
+        self._background.draw()
+        self._platforms.draw()
 
-        for tile in self._background:
-            tile.draw()
-        for tile in self._platforms:
-            tile.draw()
-             
