@@ -7,11 +7,12 @@ class DrawActorsAction(Action):
         super().__init__()
 
     def execute(self, cast, cue, callback):
+        cast.get_actors("map")[0].draw()
         self._draw_player(cast)
         #self._draw_ground(cast)
         self._draw_instructions(cast)
+        self._draw_health_bars(cast)
 
-        cast.get_actors("map")[0].draw()
         
         
     def _draw_ground(self, cast):
