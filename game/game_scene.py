@@ -9,7 +9,7 @@ from game.handle_collisions_action import HandleCollisionsAction
 from game.control_actors_action import ControlActorsAction
 from game.draw_actors_action import DrawActorsAction
 from game.move_actors_action import MoveActorsAction
-from game.map import Map
+
 
 class GameScene(Scene):
 
@@ -22,11 +22,16 @@ class GameScene(Scene):
         cast = Cast()
         cast.add_actor("players", player1)
         cast.add_actor("players", player2)
+
+        for i in range(10):
+            ground = Ground()
+            ground.left = (i * ground.width)
+            cast.add_actor("grounds", ground)
         
         instruction = Instruction()
         cast.add_actor("instructions", instruction)
 
-  # create the script
+        # create the script
         control_actors_action = ControlActorsAction()
         move_actors_action = MoveActorsAction()
         handle_collisions_action = HandleCollisionsAction()
@@ -42,6 +47,3 @@ class GameScene(Scene):
         # set the scene
         self.set_cast(cast)
         self.set_script(script)
-
-        self.map_name = "game/assets/maps/dev_blocks.tmx"
-        self._map = Map(self.map_name, self)
