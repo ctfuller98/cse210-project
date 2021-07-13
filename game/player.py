@@ -41,12 +41,12 @@ class Player(Actor):
     def attack_up(self,attacking):
         self._texture_index = 0
         self._is_attacking = attacking
-        self._attack_index = 0
+        self._attack_index = 1
 
     def attack_forward(self, attacking):
         self._texture_index = 0
         self._is_attacking = attacking
-        self._attack_index = 1
+        self._attack_index = 0
 
     def attack_down(self, attacking):
         self._texture_index = 0
@@ -109,22 +109,21 @@ class Player(Actor):
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
                 if self._texture_index == len(constants.get_texture(self.spriteindex, attacks[self._attack_index])) - 2:
                     self._is_attacking = False
-                num_textures = len(constants.get_texture(self.spriteindex, "ATTACK_ONE"))
+                num_textures = len(constants.get_texture(self.spriteindex, attacks[self._attack_index]))
                 self._current_frame = 0
                 last_index = self._texture_index
                 self._texture_index = (self._texture_index + 1) % num_textures
-                if last_index != self._texture_index and self._texture_index == constants.ATTACK_FRAME["ATTACK_ONE"][self.spriteindex]:
+                if last_index != self._texture_index and self._texture_index == constants.ATTACK_FRAME[attacks[self._attack_index]][self.spriteindex]:
                     self._is_hitting = True
-                self.texture = constants.get_texture(self.spriteindex, "ATTACK_ONE", self.facing_left)[self._texture_index]
-                
+                self.texture = constants.get_texture(self.spriteindex, attacks[self._attack_index], self.facing_left)[self._texture_index]
 
     def _draw_health_bar(self,mirrored):
         """ Draw the health bar """
 
         # Draw the 'unhealthy' background (The mirrored variable is either zero or one, it is an int so it can be used in the math for positioning player 2's healthbar, but not player 1's)
         if self.current_health < self.max_health:
-            arcade.draw_rectangle_filled(center_x=constants.HEALTHBAR_WIDTH / 2 + mirrored * (constants.SCREEN_WIDTH - constants.HEALTHBAR_WIDTH),
-                                         center_y=constants.SCREEN_HEIGHT - constants.HEALTHBAR_HEIGHT /2,
+            arcade.draw_rectangle_filled(self.center_x ,
+                                        self.center_y + constants.HEALTHBAR_HEIGHT * 4,
                                          width=constants.HEALTHBAR_WIDTH,
                                          height=constants.HEALTHBAR_HEIGHT,
                                          color=arcade.color.RED)
@@ -132,8 +131,8 @@ class Player(Actor):
         # Calculate width based on health (See the above note on the unhealth background for what the mirrored variable does for the center_x value)
         health_width = constants.HEALTHBAR_WIDTH * (self.current_health / self.max_health)
 
-        arcade.draw_rectangle_filled(center_x=health_width / 2 + mirrored * (constants.SCREEN_WIDTH - constants.HEALTHBAR_WIDTH),
-                                     center_y=constants.SCREEN_HEIGHT - constants.HEALTHBAR_HEIGHT /2,
+        arcade.draw_rectangle_filled(self.center_x ,
+                                     self.center_y + constants.HEALTHBAR_HEIGHT * 4,
                                      width=health_width,
                                      height=constants.HEALTHBAR_HEIGHT,
                                      color=arcade.color.GREEN)

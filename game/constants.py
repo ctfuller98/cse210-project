@@ -42,35 +42,41 @@ def get_texture(spriteindex, name, mirrored=False):
 
 #(NAME OF ANIMATION , FILE PATH/FILE NAME, NUMBER OF FILES , MIRRORED?) 
 
-_load_texture_array(0, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH)
+#----------------------------PLAYER ONE-----------------------------#
+#IDLE
 _load_texture_array(0, "PLAYER_IDLE", "Idle/Idle", 8, PLAYER_PATH, True)
 #JUMPING
 _load_texture(0, "PLAYER_JUMPING", "Jump/Jump2", PLAYER_PATH, True)
 #WALKING
 _load_texture_array(0, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH, True)
-
 #FALLING
 _load_texture_array(0, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH, True)
-#ATTACK 1
+#SIDE ATTACK
 _load_texture_array(0, "ATTACK_ONE", "Attack1/Attack1.", 4, PLAYER_PATH, True)
-#ATTACK 2 
+#UP ATTACK
 _load_texture_array(0, "ATTACK_TWO", "Attack2/Attack2.", 4, PLAYER_PATH, True)
+#DOWN ATTACK
+_load_texture_array(0, "ATTACK_THREE", "Attack3/Attack3.", 4, PLAYER_PATH, True)
 
+#---------------------------PLAYER TWO------------------------------------#
+#FALL
 _load_texture_array(1, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH_TWO)
+#IDLE
 _load_texture_array(1, "PLAYER_IDLE", "Idle/Idle", 8, PLAYER_PATH_TWO, True)
 #JUMPING
 _load_texture(1, "PLAYER_JUMPING", "Jump/Jump2", PLAYER_PATH_TWO, True)
 #WALKING
 _load_texture_array(1, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH_TWO, True)
-
 #FALLING
 _load_texture_array(1, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH_TWO, True)
-#ATTACK 1
+#SIDE ATTACK
 _load_texture_array(1, "ATTACK_ONE", "Attack1/Attack1.", 7, PLAYER_PATH_TWO, True)
-#ATTACK 2 
+#UP ATTACK
 _load_texture_array(1, "ATTACK_TWO", "Attack2/Attack2.", 6, PLAYER_PATH_TWO, True)
+#DOWN ATTACK
+_load_texture_array(1, "ATTACK_THREE", "Attack3/Attack3.", 7, PLAYER_PATH_TWO, True)
 
-# GROUND CONSTANTS
+#-------------------------GROUND CONSTANTS---------------------------#
 
 GROUND_MOVE_SPEED = -8
 GROUND_PATH = ":resources:images/tiles"
@@ -78,8 +84,8 @@ GROUND_GRASS = arcade.load_texture(f"{GROUND_PATH}/grass.png")
 
 # HEALTH CONSTANTS
 
-HEALTHBAR_WIDTH = 200
-HEALTHBAR_HEIGHT = 30
+HEALTHBAR_WIDTH = 50
+HEALTHBAR_HEIGHT = 6
 
 # ATTACK CONSTANTS
 
