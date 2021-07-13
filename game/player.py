@@ -19,6 +19,7 @@ class Player(Actor):
         self.max_health = 100
         self.current_health = 100
         self.spriteindex = spriteindex
+        self._is_hitting = False
         
     def jump(self):
         if not self._is_jumping:
