@@ -42,6 +42,8 @@ def get_texture(spriteindex, name, mirrored=False):
 
 #(NAME OF ANIMATION , FILE PATH/FILE NAME, NUMBER OF FILES , MIRRORED?) 
 
+#----------------------------PLAYER ONE-----------------------------#
+#IDLE
 _load_texture_array(0, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH)
 _load_texture_array(0, "PLAYER_IDLE", "Idle/Idle", 8, PLAYER_PATH, True)
 #JUMPING
