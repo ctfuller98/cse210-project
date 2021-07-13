@@ -16,5 +16,8 @@ class HandleCollisionsAction(Action):
             grounds = cast.get_actors("grounds")
             for ground in grounds:
                 if arcade.check_for_collision(player, ground):
-                    player.bottom = ground.top
+                    if abs(player.top - ground.bottom) <= 4:
+                        player.change_y = 0
+                    elif player.top > ground.top:
+                        player.bottom = ground.top
                     player.idle()    
