@@ -58,10 +58,3 @@ class Map():
 
         self._background.draw()
         self._platforms.draw()
-        #for tile in self._background:
-          # tile.draw()
-        #for tile in self._platforms:
-        #    tile.draw()
-             
-
-        print(timeit.default_timer() - start_time)
