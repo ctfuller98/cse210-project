@@ -8,15 +8,17 @@ class DrawActorsAction(Action):
 
     def execute(self, cast, cue, callback):
         self._draw_player(cast)
-        self._draw_ground(cast)
+        #self._draw_ground(cast)
         self._draw_instructions(cast)
-        self._draw_health_bars(cast)
+
+        cast.get_actors("map")[0].draw()
+        
         
     def _draw_ground(self, cast):
         grounds = cast.get_actors("grounds")
         for ground in grounds:
             ground.draw()
-    
+                
     def _draw_instructions(self, cast):
         instructions = cast.get_actors("instructions")
         for instruction in instructions:
@@ -26,6 +28,7 @@ class DrawActorsAction(Action):
         players = cast.get_actors("players")
         for player in players:
             player.draw()
+    
     
     #If there's a more elegant way to draw the two healthbars differently, I'd be welcome to hearing it. -Braxton
     def _draw_health_bars(self, cast):
