@@ -4,7 +4,7 @@ from game import constants, player
 class Map():
     
     def __init__(self, map_name, scene):
-        
+        self.update_every_other_frame = 0
         self.scroll_x = 0
         # Read in the tiled map
         my_map = arcade.tilemap.read_tmx(map_name)
@@ -48,8 +48,6 @@ class Map():
 
         x_ratio = self.scroll_x / 208
         x_ratio -= 0.5
-
-        print(constants.SCREEN_WIDTH * 0.05 * x_ratio)
 
         arcade.draw_lrwh_rectangle_textured(self.scroll_x , self.scroll_y , constants.SCREEN_WIDTH , constants.SCREEN_HEIGHT , self._background_images[0])
         arcade.draw_lrwh_rectangle_textured(self.scroll_x + (constants.SCREEN_WIDTH * 0.02 * x_ratio) - constants.SCREEN_WIDTH * 0.02, self.scroll_y , constants.SCREEN_WIDTH * 1.05 , constants.SCREEN_HEIGHT , self._background_images[1])

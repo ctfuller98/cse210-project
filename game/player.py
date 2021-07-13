@@ -110,8 +110,8 @@ class Player(Actor):
 
         # Draw the 'unhealthy' background (The mirrored variable is either zero or one, it is an int so it can be used in the math for positioning player 2's healthbar, but not player 1's)
         if self.current_health < self.max_health:
-            arcade.draw_rectangle_filled(center_x=constants.HEALTHBAR_WIDTH / 2 + mirrored * (constants.SCREEN_WIDTH - constants.HEALTHBAR_WIDTH),
-                                         center_y=constants.SCREEN_HEIGHT - constants.HEALTHBAR_HEIGHT /2,
+            arcade.draw_rectangle_filled(self.center_x ,
+                                        self.center_y + constants.HEALTHBAR_HEIGHT * 4,
                                          width=constants.HEALTHBAR_WIDTH,
                                          height=constants.HEALTHBAR_HEIGHT,
                                          color=arcade.color.RED)
@@ -119,8 +119,8 @@ class Player(Actor):
         # Calculate width based on health (See the above note on the unhealth background for what the mirrored variable does for the center_x value)
         health_width = constants.HEALTHBAR_WIDTH * (self.current_health / self.max_health)
 
-        arcade.draw_rectangle_filled(center_x=health_width / 2 + mirrored * (constants.SCREEN_WIDTH - constants.HEALTHBAR_WIDTH),
-                                     center_y=constants.SCREEN_HEIGHT - constants.HEALTHBAR_HEIGHT /2,
+        arcade.draw_rectangle_filled(self.center_x ,
+                                     self.center_y + constants.HEALTHBAR_HEIGHT * 4,
                                      width=health_width,
                                      height=constants.HEALTHBAR_HEIGHT,
                                      color=arcade.color.GREEN)
