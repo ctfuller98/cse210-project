@@ -60,6 +60,8 @@ _load_texture_array(0, "ATTACK_TWO", "Attack2/Attack2.", 4, PLAYER_PATH, True)
 #DOWN ATTACK
 _load_texture_array(0, "ATTACK_THREE", "Attack3/Attack3.", 4, PLAYER_PATH, True)
 
+#---------------------------PLAYER TWO------------------------------------#
+#FALL
 _load_texture_array(1, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH_TWO)
 _load_texture_array(1, "PLAYER_IDLE", "Idle/Idle", 8, PLAYER_PATH_TWO, True)
 #JUMPING
