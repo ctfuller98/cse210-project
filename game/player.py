@@ -41,12 +41,12 @@ class Player(Actor):
     def attack_up(self,attacking):
         self._texture_index = 0
         self._is_attacking = attacking
-        self._attack_index = 0
+        self._attack_index = 1
 
     def attack_forward(self, attacking):
         self._texture_index = 0
         self._is_attacking = attacking
-        self._attack_index = 1
+        self._attack_index = 0
         print("forward attack")
 
     def attack_down(self, attacking):
