@@ -10,7 +10,6 @@ def main():
     game_scene = GameScene()
     director = Director(width, height)
     director.direct_scene(game_scene)
-    arcade.set_background_color(arcade.color.BLUE_YONDER)
     arcade.run()
 
 
