@@ -46,6 +46,7 @@ class GameScene(Scene):
         script.add_action(Cue.ON_KEY_RELEASE, control_actors_action)
         script.add_action(Cue.ON_UPDATE, move_actors_action)
         script.add_action(Cue.ON_UPDATE, handle_collisions_action)
+        script.add_action(Cue.ON_UPDATE, handle_attack_collisions_action)
         script.add_action(Cue.ON_DRAW, draw_actors_action)
         
         # set the scene
