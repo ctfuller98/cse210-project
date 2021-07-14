@@ -92,6 +92,8 @@ HEALTHBAR_HEIGHT = 6
 
 # ATTACK CONSTANTS
 
+# Attack time, how long any move will take to hit
+ATTACK_TIME = 20
 DEFAULT_ATTACK_DAMAGE = 25
 ATTACK_FRAME = {
     "ATTACK_ONE" : [2,6],

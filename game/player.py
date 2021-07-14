@@ -105,7 +105,8 @@ class Player(Actor):
         if self._is_attacking == True:
             self._current_frame += 1
             attacks = ["ATTACK_ONE", "ATTACK_TWO", "ATTACK_THREE"]
-            if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
+            # This if statment scales time so that all attacks hit at the same time, or after constants.ATTACK_TIME. If a attack hits on the first frame it will cause a divide by zero error.
+            if self._current_frame >= constants.ATTACK_TIME / constants.ATTACK_FRAME[attacks[self._attack_index]][self.spriteindex]:
                 if self._texture_index == len(constants.get_texture(self.spriteindex, attacks[self._attack_index])) - 2:
                     self._is_attacking = False
                 num_textures = len(constants.get_texture(self.spriteindex, attacks[self._attack_index]))
