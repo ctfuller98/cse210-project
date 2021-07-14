@@ -1,6 +1,7 @@
 from core.actor import Actor
 from game import constants
 import arcade
+from arcade import sound
 
 class Player(Actor):
 
@@ -26,7 +27,8 @@ class Player(Actor):
             self._is_jumping = True
             self._is_walking = False
             self.change_y = constants.PLAYER_JUMP_SPEED
-    
+            arcade.play_sound(constants.get_sound(self.spriteindex, "JUMP"))
+
     def idle(self):
         self._is_jumping = False
         self.change_y = 0
@@ -37,16 +39,17 @@ class Player(Actor):
         if(speed != 0):
             self.facing_left = speed < 0
        
-
     def attack_up(self,attacking):
         self._texture_index = 0
         self._is_attacking = attacking
         self._attack_index = 1
+        arcade.play_sound(constants.get_sound(self.spriteindex, "UP"))
 
     def attack_forward(self, attacking):
         self._texture_index = 0
         self._is_attacking = attacking
         self._attack_index = 0
+        arcade.play_sound(constants.get_sound(self.spriteindex, "SIDE"))
 
     def attack_down(self, attacking):
         self._texture_index = 0
@@ -54,7 +57,7 @@ class Player(Actor):
         self._attack_index = 2
         if not self._is_jumping:
             self.change_x = 0
-    
+        arcade.play_sound(constants.get_sound(self.spriteindex, "DOWN"))
     def is_hitting(self):
         is_hitting = self._is_hitting
         self._is_hitting = False

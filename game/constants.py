@@ -1,5 +1,6 @@
 import arcade
 import os
+from arcade import sound
 # GAME CONSTANTS
 SCREEN_HEIGHT = 400
 SCREEN_WIDTH = 800
@@ -17,6 +18,10 @@ PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO")
 PLAYER_PATH_TWO = os.path.join(PROJECT_ROOT, "assets/SING")
 MUSIC_PATH = os.path.join(PROJECT_ROOT, "assets/Bkgmusic")
 _ANIMATIONS = [{}, {}]
+JUMP = ''
+DOWN = ''
+SIDE = ''
+UP= ''
 def _load_texture(spriteindex, name, filename, path, mirrored=False):
     _ANIMATIONS[spriteindex][name] = {}
     _ANIMATIONS[spriteindex][name][False] = arcade.load_texture(f"{path}/{filename}.png")
@@ -39,7 +44,34 @@ def _load_texture_array(spriteindex, name, filename, count, path,  mirrored=Fals
 
 def get_texture(spriteindex, name, mirrored=False):
     return _ANIMATIONS[spriteindex][name][mirrored]
-
+#=================SOUND CONSTANTS==============================#
+def get_sound(spriteindex, name):
+    if spriteindex == 0:
+        JUMP = sound.load_sound(os.path.join(PLAYER_SOUND, "Jump.mp3"))
+        UP = sound.load_sound(os.path.join(PLAYER_SOUND, "Strike1.1.wav"))
+        DOWN = sound.load_sound(os.path.join(PLAYER_SOUND, "Strike1.2.wav"))
+        SIDE = sound.load_sound(os.path.join(PLAYER_SOUND, "Strike1.3.wav"))
+        if name == "JUMP":
+            return JUMP
+        elif name == "UP":
+            return UP
+        elif name == "DOWN":
+            return DOWN
+        elif name == "SIDE":
+            return SIDE
+    elif spriteindex == 1: 
+        JUMP = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Jump.mp3"))
+        UP = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Strike1.1.wav"))
+        DOWN = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Strike1.2.wav"))
+        SIDE = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Strike1.3.wav"))
+        if name == "JUMP":
+            return JUMP
+        elif name == "UP":
+            return UP
+        elif name == "DOWN":
+            return DOWN
+        elif name == "SIDE":
+            return SIDE
 #(NAME OF ANIMATION , FILE PATH/FILE NAME, NUMBER OF FILES , MIRRORED?) 
 
 #----------------------------PLAYER ONE-----------------------------#
