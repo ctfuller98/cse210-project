@@ -19,9 +19,9 @@ class ControlActorsAction(Action):
             "jump" : arcade.key.W,
             "left" : arcade.key.A,
             "right" : arcade.key.D,
-            "attack_up" : arcade.key.C,
+            "attack_up" : arcade.key.Z,
             "attack_forward" : arcade.key.X,
-            "attack_down" : arcade.key.Z
+            "attack_down" : arcade.key.C
         }, self.input_1)
         self.update_player(cue, cast.get_actors("players")[1], {
             "jump" : arcade.key.I,
