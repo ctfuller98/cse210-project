@@ -5,19 +5,17 @@ class HandleCollisionsAction(Action):
     
     def __init__(self):
         super().__init__()
+        self.physics_engine_01 = None
+        self.physics_engine_02 = None
 
     def execute(self, cast, cue, callback):
         self._handle_ground_collisions(cast)
         
 
     def _handle_ground_collisions(self, cast):
-        players = cast.get_actors("players")
-        for player in players:
-            grounds = cast.get_actors("grounds")
-            for ground in grounds:
-                if arcade.check_for_collision(player, ground):
-                    if abs(player.top - ground.bottom) <= 4:
-                        player.change_y = 0
-                    elif player.top > ground.top:
-                        player.bottom = ground.top
-                    player.idle()    
+        if (self.physics_engine_01 == None):
+            self.physics_engine_01 = arcade.PhysicsEngineSimple(cast.get_actors("players")[0], cast._walls)
+            self.physics_engine_02 = arcade.PhysicsEngineSimple(cast.get_actors("players")[1], cast._walls)
+
+        self.physics_engine_01.update()
+        self.physics_engine_02.update()

@@ -90,7 +90,7 @@ class Player(Actor):
         self.y_offset += past_bottom - self.bottom
         
     def _check_falling(self):
-        if self.change_y < -1  and not self._is_attacking:
+        if self.change_y < -5  and not self._is_attacking:
             num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_FALLING"))
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
@@ -105,6 +105,7 @@ class Player(Actor):
     def _check_idle(self):
         if self.change_x == 0 and self._is_attacking == False:
             self._is_walking = False 
+            self._is_jumping = False
             self._current_frame += 1
             if self._current_frame >= constants.PLAYER_ANIMATION_RATE:
                 num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_IDLE"))
