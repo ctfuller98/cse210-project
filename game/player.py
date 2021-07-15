@@ -26,6 +26,7 @@ class Player(Actor):
         self.x_offset = 0
         self.y_offset = 0
         self._is_blocking = False
+        self.player_name = "Player " + str(spriteindex + 1)
         
     def jump(self):
         if not self._is_jumping:
@@ -187,8 +188,8 @@ class Player(Actor):
         """ Draws the Player's name above their health """
 
         arcade.draw_text(self.player_name,
-                         start_x=self.center_x,
-                         start_y=self.center_y + 25 , #This number determines the height at which the name is displayed
+                         start_x=self.center_x - 25,
+                         start_y=self.center_y + 25, #This number determines the height at which the name is displayed
                          font_size=12,
                          color=arcade.color.WHITE)
 
