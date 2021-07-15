@@ -16,8 +16,15 @@ class HandleAttackCollisionsAction(Action):
         if arcade.check_for_collision(player1, player2):
 
             if(player1.is_hitting()):
-                player2.damage(constants.DEFAULT_ATTACK_DAMAGE)
+                if player2.blocking(player1):
+                    player2.block()
+                else:
+                    player2.damage(constants.DEFAULT_ATTACK_DAMAGE)
+                
         
             if(player2.is_hitting()):
-                player1.damage(constants.DEFAULT_ATTACK_DAMAGE)
+                if player1.blocking(player2):
+                    player1.block()
+                else:
+                    player1.damage(constants.DEFAULT_ATTACK_DAMAGE)
          

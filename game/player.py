@@ -25,6 +25,7 @@ class Player(Actor):
         self.y = self.center_y
         self.x_offset = 0
         self.y_offset = 0
+        self._is_blocking = False
         
     def jump(self):
         if not self._is_jumping:
@@ -62,10 +63,29 @@ class Player(Actor):
         if not self._is_jumping:
             self.change_x = 0
         arcade.play_sound(constants.get_sound(self.spriteindex, "DOWN"))
+
     def is_hitting(self):
         is_hitting = self._is_hitting
         self._is_hitting = False
         return is_hitting
+
+    def blocking(self, other_player):
+        if not self._is_attacking:
+            return False
+
+        if self._attack_index == 1 and other_player._attack_index == 2:
+            return True
+        elif self._attack_index == 2 and other_player._attack_index == 1:
+            return True
+        elif self._attack_index == 0 and other_player._attack_index == 0:
+            return True
+
+        return False
+
+    def block(self):
+        attacks = ["ATTACK_ONE", "ATTACK_TWO", "ATTACK_THREE"]
+        self._texture_index == constants.ATTACK_FRAME[attacks[self._attack_index]][self.spriteindex]
+        self._is_blocking = True
 
     def damage(self, damage):
         self.current_health = min(max(self.current_health - damage, 0), self.max_health)  
@@ -136,7 +156,8 @@ class Player(Actor):
                 last_index = self._texture_index
                 self._texture_index = (self._texture_index + 1) % num_textures
                 if last_index != self._texture_index and self._texture_index == constants.ATTACK_FRAME[attacks[self._attack_index]][self.spriteindex]:
-                    self._is_hitting = True
+                    self._is_hitting = not self._is_blocking
+                    self._is_blocking = False
                 else:
                     self._is_hitting = False
                 self.texture = constants.get_texture(self.spriteindex, attacks[self._attack_index], self.facing_left)[self._texture_index]
