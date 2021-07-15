@@ -4,6 +4,7 @@ import timeit
 class Map():
     
     def __init__(self, map_name, scene):
+        
         self.update_every_other_frame = 0
         self.scroll_x = 0
         # Read in the tiled map
@@ -33,6 +34,8 @@ class Map():
         self._scene = scene
 
         scene.get_cast().add_actor("map", self)
+        
+        scene.get_cast()._walls = self._platforms
 
     def draw(self):
         
