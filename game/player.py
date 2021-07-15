@@ -21,6 +21,10 @@ class Player(Actor):
         self.current_health = 100
         self.spriteindex = spriteindex
         self._is_hitting = False
+        self.x = self.center_x
+        self.y = self.center_y
+        self.x_offset = 0
+        self.y_offset = 0
         
     def jump(self):
         if not self._is_jumping:
@@ -30,8 +34,8 @@ class Player(Actor):
             arcade.play_sound(constants.get_sound(self.spriteindex, "JUMP"))
 
     def idle(self):
-        self._is_jumping = False
         self.change_y = 0
+        self._is_jumping = False
     
     def walk(self, speed):
         self._is_walking = True
@@ -67,12 +71,23 @@ class Player(Actor):
         self.current_health = min(max(self.current_health - damage, 0), self.max_health)  
             
     def update(self):
-        self._update_position()
+        self._update_velocity()
         self._check_idle()
         self._check_jumping()
         self._check_walking()
         self._check_falling()
         self._check_attacking()
+        self._update_collider()
+        self._update_position()
+
+    def _update_collider(self):
+        #x1, y1 = - self._width / 2, - self._height / 2
+        #x2, y2 = + self._width / 2, - self._height / 2
+        #x3, y3 = + self._width / 2, + self._height / 2
+        #x4, y4 = - self._width / 2, + self._height / 2
+        past_bottom = self.bottom
+        self.set_hit_box(self.texture.hit_box_points)
+        self.y_offset += past_bottom - self.bottom
         
     def _check_falling(self):
         if self.change_y < -1  and not self._is_attacking:
@@ -80,10 +95,12 @@ class Player(Actor):
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
             self.texture = constants.get_texture(self.spriteindex, "PLAYER_FALLING", self.facing_left)[self._texture_index]
+            
 
     def _check_jumping(self):
         if self.change_y > 0  and not self._is_attacking:
             self.texture = constants.get_texture(self.spriteindex, "PLAYER_JUMPING", self.facing_left)
+            
 
     def _check_idle(self):
         if self.change_x == 0 and self._is_attacking == False:
@@ -104,6 +121,7 @@ class Player(Actor):
                 self._texture_index = (self._texture_index + 1) % num_textures
                 self.texture = constants.get_texture(self.spriteindex, "PLAYER_WALKING", self.facing_left)[self._texture_index]
 
+
     def _check_attacking(self):
         if self._is_attacking == True:
             self._current_frame += 1
@@ -121,6 +139,7 @@ class Player(Actor):
                 else:
                     self._is_hitting = False
                 self.texture = constants.get_texture(self.spriteindex, attacks[self._attack_index], self.facing_left)[self._texture_index]
+                
 
     def _draw_health_bar(self,mirrored):
         """ Draw the health bar """
@@ -142,8 +161,17 @@ class Player(Actor):
                                      height=constants.HEALTHBAR_HEIGHT,
                                      color=arcade.color.GREEN)
    
-    def _update_position(self):
-        self.change_y -= constants.GRAVITY   
-        self.center_y += self.change_y
+    def _update_velocity(self):
+        self.x = self.center_x - self.x_offset
+        self.y = self.center_y - self.y_offset
+
+        self.change_y -= constants.GRAVITY 
+        self.y += self.change_y
         if not (self._is_attacking and not self._is_jumping):
-            self.center_x += self.change_x
+            self.x += self.change_x
+
+    def _update_position(self):
+        self.center_x = self.x + self.x_offset
+        self.center_y = self.y + self.y_offset
+
+        
