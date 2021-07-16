@@ -1,6 +1,8 @@
 from collections import defaultdict
 from itertools import chain
 
+from arcade.sprite_list import SpriteList
+
 
 class Cast:
 
@@ -8,7 +10,7 @@ class Cast:
         super().__init__()
         self._current_actors = defaultdict(list)
         self._removed_actors = defaultdict(list)
-        
+        self._walls = SpriteList()
     def add_actor(self, group, actor):
         self._current_actors[group].append(actor)
         

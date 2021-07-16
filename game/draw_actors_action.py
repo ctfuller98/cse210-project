@@ -28,6 +28,7 @@ class DrawActorsAction(Action):
         players = cast.get_actors("players")
         for player in players:
             player.draw()
+            player.draw_name()
     
     
     #If there's a more elegant way to draw the two healthbars differently, I'd be welcome to hearing it. -Braxton
