@@ -72,6 +72,12 @@ def get_sound(spriteindex, name):
             return DOWN
         elif name == "SIDE":
             return SIDE
+
+#===========================BACKGROUND MUSIC CONSTANTS=======================#
+MUSIC_VOLUME = 0.5
+SONG_1 = MUSIC_PATH + "Battle.mp3"
+SONG_2 = MUSIC_PATH + "Epic Drums.mp3"
+
 #(NAME OF ANIMATION , FILE PATH/FILE NAME, NUMBER OF FILES , MIRRORED?) 
 
 #----------------------------PLAYER ONE-----------------------------#
