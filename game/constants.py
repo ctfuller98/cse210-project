@@ -75,8 +75,13 @@ def get_sound(spriteindex, name):
 
 #===========================BACKGROUND MUSIC CONSTANTS=======================#
 MUSIC_VOLUME = 0.5
-SONG_1 = MUSIC_PATH + "Battle.mp3"
-SONG_2 = MUSIC_PATH + "Epic Drums.mp3"
+SONG_1 = MUSIC_PATH + "\Battle.mp3"
+SONG_2 = MUSIC_PATH + "\Epic Drums.mp3"
+SONG_3 = MUSIC_PATH + "\Action Fight.mp3"
+SONG_4 = MUSIC_PATH + "\Action Rhythms.mp3"
+SONG_5 = MUSIC_PATH + "\Daredevil.mp3"
+SONG_6 = MUSIC_PATH + "\Last Time.mp3"
+MUSIC_LIST = [SONG_1, SONG_2, SONG_3, SONG_4, SONG_5, SONG_6]
 
 #(NAME OF ANIMATION , FILE PATH/FILE NAME, NUMBER OF FILES , MIRRORED?) 
 
