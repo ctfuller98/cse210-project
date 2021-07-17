@@ -1,9 +1,10 @@
 import arcade
 import os
 from arcade import sound
+import random
 # GAME CONSTANTS
-SCREEN_HEIGHT = 400
-SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1000
 CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
 GRAVITY = 1
@@ -18,10 +19,6 @@ PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO")
 PLAYER_PATH_TWO = os.path.join(PROJECT_ROOT, "assets/SING")
 MUSIC_PATH = os.path.join(PROJECT_ROOT, "assets/Bkgmusic")
 _ANIMATIONS = [{}, {}]
-JUMP = ''
-DOWN = ''
-SIDE = ''
-UP= ''
 def _load_texture(spriteindex, name, filename, path, mirrored=False):
     _ANIMATIONS[spriteindex][name] = {}
     _ANIMATIONS[spriteindex][name][False] = arcade.load_texture(f"{path}/{filename}.png")
@@ -51,6 +48,10 @@ def get_sound(spriteindex, name):
         UP = sound.load_sound(os.path.join(PLAYER_SOUND, "Strike1.1.wav"))
         DOWN = sound.load_sound(os.path.join(PLAYER_SOUND, "Strike1.2.wav"))
         SIDE = sound.load_sound(os.path.join(PLAYER_SOUND, "Strike1.3.wav"))
+        HIT_ONE = sound.load_sound(os.path.join(PLAYER_SOUND, "Hit1.1.wav"))
+        HIT_TWO = sound.load_sound(os.path.join(PLAYER_SOUND, "Hit1.2.wav"))
+        HIT_THREE = sound.load_sound(os.path.join(PLAYER_SOUND, "Hit1.3.wav"))
+        HITS = [HIT_ONE, HIT_TWO, HIT_THREE]
         if name == "JUMP":
             return JUMP
         elif name == "UP":
@@ -59,11 +60,17 @@ def get_sound(spriteindex, name):
             return DOWN
         elif name == "SIDE":
             return SIDE
+        elif name == "HIT":
+            return random.choice(HITS)
     elif spriteindex == 1: 
         JUMP = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Jump.mp3"))
         UP = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Strike1.1.wav"))
         DOWN = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Strike1.2.wav"))
         SIDE = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Strike1.3.wav"))
+        HIT_ONE = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Hit1.1.wav"))
+        HIT_TWO = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Hit1.2.wav"))
+        HIT_THREE = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Hit1.3.wav"))
+        HITS = [HIT_ONE, HIT_TWO, HIT_THREE]
         if name == "JUMP":
             return JUMP
         elif name == "UP":
@@ -72,6 +79,19 @@ def get_sound(spriteindex, name):
             return DOWN
         elif name == "SIDE":
             return SIDE
+        elif name == "HIT":
+            return random.choice(HITS)
+
+#===========================BACKGROUND MUSIC CONSTANTS=======================#
+MUSIC_VOLUME = 0.5
+SONG_1 = MUSIC_PATH + "\Battle.mp3"
+SONG_2 = MUSIC_PATH + "\Epic Drums.mp3"
+SONG_3 = MUSIC_PATH + "\Action Fight.mp3"
+SONG_4 = MUSIC_PATH + "\Action Rhythms.mp3"
+SONG_5 = MUSIC_PATH + "\Daredevil.mp3"
+SONG_6 = MUSIC_PATH + "\Last Time.mp3"
+MUSIC_LIST = [SONG_1, SONG_2, SONG_3, SONG_4, SONG_5, SONG_6]
+
 #(NAME OF ANIMATION , FILE PATH/FILE NAME, NUMBER OF FILES , MIRRORED?) 
 
 #----------------------------PLAYER ONE-----------------------------#
@@ -83,6 +103,8 @@ _load_texture(0, "PLAYER_JUMPING", "Jump/Jump2", PLAYER_PATH, True)
 #WALKING
 _load_texture_array(0, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH, True)
 
+#DEATH
+_load_texture_array(0, "PLAYER_DEATH", "Death/Death",  6, PLAYER_PATH, True)
 #FALLING
 _load_texture_array(0, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH, True)
 #SIDE ATTACK
@@ -101,7 +123,8 @@ _load_texture_array(1, "PLAYER_IDLE", "Idle/Idle", 8, PLAYER_PATH_TWO, True)
 _load_texture(1, "PLAYER_JUMPING", "Jump/Jump2", PLAYER_PATH_TWO, True)
 #WALKING
 _load_texture_array(1, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH_TWO, True)
-
+#DEATH
+_load_texture_array(0, "PLAYER_DEATH", "Death/Death",  10, PLAYER_PATH_TWO, True)
 #FALLING
 _load_texture_array(1, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH_TWO, True)
 #SIDE ATTACK
@@ -111,11 +134,6 @@ _load_texture_array(1, "ATTACK_TWO", "Attack2/Attack2.", 6, PLAYER_PATH_TWO, Tru
 #DOWN ATTACK
 _load_texture_array(1, "ATTACK_THREE", "Attack3/Attack3.", 7, PLAYER_PATH_TWO, True)
 
-#-------------------------GROUND CONSTANTS---------------------------#
-
-GROUND_MOVE_SPEED = -8
-GROUND_PATH = ":resources:images/tiles"
-GROUND_GRASS = arcade.load_texture(f"{GROUND_PATH}/grass.png")
 
 # HEALTH CONSTANTS
 

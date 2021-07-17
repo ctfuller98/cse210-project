@@ -12,7 +12,9 @@ from game.control_actors_action import ControlActorsAction
 from game.draw_actors_action import DrawActorsAction
 from game.move_actors_action import MoveActorsAction
 from game.map import Map
-
+from game import constants
+import arcade
+import random
 
 class GameScene(Scene):
 
@@ -21,7 +23,6 @@ class GameScene(Scene):
         # create the cast
         player1 = Player(100, 0, False)
         player2 = Player(700, 1, True)
-
         cast = Cast()
         cast.add_actor("players", player1)
         cast.add_actor("players", player2)
@@ -43,10 +44,18 @@ class GameScene(Scene):
         script.add_action(Cue.ON_UPDATE, handle_collisions_action)
         script.add_action(Cue.ON_UPDATE, handle_attack_collisions_action)
         script.add_action(Cue.ON_DRAW, draw_actors_action)
-        
         # set the scene
         self.set_cast(cast)
         self.set_script(script)
 
         self.map_name = "game/assets/maps/dev_blocks.tmx"
         self._map = Map(self.map_name, self)
+        
+    def play_music(self):
+            self.enable_bg_music = True
+            self.music_list = constants.MUSIC_LIST
+            if self.enable_bg_music:
+                songs = self.music_list
+                bg_song = random.choice(songs)
+                self.background_music = arcade.load_sound(bg_song)
+                arcade.play_sound(self.background_music)

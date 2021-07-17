@@ -27,6 +27,7 @@ class Player(Actor):
         self.y_offset = 0
         self._is_blocking = False
         self.player_name = "Player " + str(spriteindex + 1)
+        self.is_dead = False
         
     def jump(self):
         if not self._is_jumping:
@@ -90,7 +91,13 @@ class Player(Actor):
 
     def damage(self, damage):
         self.current_health = min(max(self.current_health - damage, 0), self.max_health)  
-            
+        arcade.play_sound(constants.get_sound(self.spriteindex, "HIT"))
+        if self.current_health <= 0:
+            num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_DEATH"))
+            self._current_frame = 0
+            self._texture_index = (self._texture_index + 1) % num_textures
+            self.texture = constants.get_texture(self.spriteindex, "PLAYER_DEATH", self.facing_left)[self._texture_index]
+
     def update(self):
         self._update_velocity()
         self._check_idle()
@@ -116,7 +123,14 @@ class Player(Actor):
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
             self.texture = constants.get_texture(self.spriteindex, "PLAYER_FALLING", self.facing_left)[self._texture_index]
-            
+    def _check_death(self):
+        if self.current_health <= 0:
+            self.is_dead = True
+            num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_DEATH"))
+            self._current_frame = 0
+            self._texture_index = (self._texture_index + 1) % num_textures
+            self.texture = constants.get_texture(self.spriteindex, "PLAYER_DEATH", self.facing_left)[self._texture_index]
+
 
     def _check_jumping(self):
         if self.change_y > 0  and not self._is_attacking:
