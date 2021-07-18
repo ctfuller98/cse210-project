@@ -36,7 +36,7 @@ class ControlActorsAction(Action):
     def update_player(self, cue, player, keyset, persistant_data):
         cue_info = cue.get_info()
         cue_name = cue.get_name()
-        if cue_name == Cue.ON_KEY_PRESS:
+        if cue_name == Cue.ON_KEY_PRESS and player.current_health > 0: #If we want controls to work after death, put them oustide of this statement.
             if cue_info["key"] == keyset["jump"]:
                 player.jump()
             if cue_info["key"] == keyset["left"]:
@@ -51,7 +51,7 @@ class ControlActorsAction(Action):
                 player.attack_down(True)
             
             player.walk(persistant_data["x"] * constants.MOVE_SPEED)
-        elif cue_name == Cue.ON_KEY_RELEASE:
+        elif cue_name == Cue.ON_KEY_RELEASE and player.current_health > 0: #If we want controls to work after death, put them oustide of this statement.
             if cue_info["key"] == keyset["left"]:
                 persistant_data["x"] += 1
             if cue_info["key"] == keyset["right"]:

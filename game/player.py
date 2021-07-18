@@ -92,15 +92,11 @@ class Player(Actor):
     def damage(self, damage):
         self.current_health = min(max(self.current_health - damage, 0), self.max_health)  
         arcade.play_sound(constants.get_sound(self.spriteindex, "HIT"))
-        if self.current_health <= 0:
-            num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_DEATH"))
-            self._current_frame = 0
-            self._texture_index = (self._texture_index + 1) % num_textures
-            self.texture = constants.get_texture(self.spriteindex, "PLAYER_DEATH", self.facing_left)[self._texture_index]
 
     def update(self):
         self._update_velocity()
         self._check_idle()
+        self._check_death()
         self._check_jumping()
         self._check_walking()
         self._check_falling()
@@ -123,12 +119,15 @@ class Player(Actor):
             self._current_frame = 0
             self._texture_index = (self._texture_index + 1) % num_textures
             self.texture = constants.get_texture(self.spriteindex, "PLAYER_FALLING", self.facing_left)[self._texture_index]
+    
     def _check_death(self):
         if self.current_health <= 0:
+            self.change_x = 0
             self.is_dead = True
             num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_DEATH"))
             self._current_frame = 0
-            self._texture_index = (self._texture_index + 1) % num_textures
+            while self._texture_index != num_textures - 1: #Prevents it from looping, once we reach the end the animation stops.
+                self._texture_index = (self._texture_index + 1) % num_textures
             self.texture = constants.get_texture(self.spriteindex, "PLAYER_DEATH", self.facing_left)[self._texture_index]
 
 

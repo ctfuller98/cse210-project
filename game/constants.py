@@ -124,7 +124,7 @@ _load_texture(1, "PLAYER_JUMPING", "Jump/Jump2", PLAYER_PATH_TWO, True)
 #WALKING
 _load_texture_array(1, "PLAYER_WALKING", "Run/Run",  8, PLAYER_PATH_TWO, True)
 #DEATH
-_load_texture_array(0, "PLAYER_DEATH", "Death/Death",  10, PLAYER_PATH_TWO, True)
+_load_texture_array(1, "PLAYER_DEATH", "Death/Death",  10, PLAYER_PATH_TWO, True)
 #FALLING
 _load_texture_array(1, "PLAYER_FALLING", "Fall/Fall", 2, PLAYER_PATH_TWO, True)
 #SIDE ATTACK
