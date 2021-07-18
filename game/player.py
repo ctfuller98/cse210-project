@@ -27,7 +27,7 @@ class Player(Actor):
         self.y_offset = 0
         self._is_blocking = False
         self.player_name = "Player " + str(spriteindex + 1)
-        self.is_dead = False
+        self._is_dead = False
         
     def jump(self):
         if not self._is_jumping:
@@ -95,12 +95,13 @@ class Player(Actor):
 
     def update(self):
         self._update_velocity()
-        self._check_idle()
         self._check_death()
-        self._check_jumping()
-        self._check_walking()
-        self._check_falling()
-        self._check_attacking()
+        if not self._is_dead:
+            self._check_idle()
+            self._check_jumping()
+            self._check_walking()
+            self._check_falling()
+            self._check_attacking()
         self._update_collider()
         self._update_position()
 
@@ -123,12 +124,13 @@ class Player(Actor):
     def _check_death(self):
         if self.current_health <= 0:
             self.change_x = 0
-            self.is_dead = True
+            self._is_dead = True
             num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_DEATH"))
-            self._current_frame = 0
-            while self._texture_index != num_textures - 1: #Prevents it from looping, once we reach the end the animation stops.
-                self._texture_index = (self._texture_index + 1) % num_textures
-            self.texture = constants.get_texture(self.spriteindex, "PLAYER_DEATH", self.facing_left)[self._texture_index]
+            self._current_frame += 1
+            if self._current_frame >= constants.DEATH_TIME / num_textures:
+                self._current_frame = 0
+                self._texture_index = min(self._texture_index + 1, num_textures - 1)
+                self.texture = constants.get_texture(self.spriteindex, "PLAYER_DEATH", self.facing_left)[self._texture_index]
 
 
     def _check_jumping(self):

@@ -150,3 +150,6 @@ ATTACK_FRAME = {
     "ATTACK_TWO" : [2,3],
     "ATTACK_THREE" : [2,4],
 }
+
+
+DEATH_TIME = 120
