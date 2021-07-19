@@ -6,12 +6,15 @@ class Script:
     def __init__(self):
         self._current_actions = defaultdict(list)
         self._removed_actions = defaultdict(list)
+        self._cues = []
         
     def add_action(self, cue_name, action):
+        if not cue_name in self._cues:
+            self._cues.append(cue_name)
         self._current_actions[cue_name].append(action)
         
     def clean_actions(self):
-        for cue_name in self._removed:
+        for cue_name in self._cues:
             current = set(self._current_actions[cue_name])
             removed = set(self._removed_actions[cue_name])
             self._current_actions[cue_name] = list(current - removed)

@@ -2,7 +2,7 @@ from core.actor import Actor
 from game import constants
 import arcade
 from arcade import sound
-
+import math
 class Player(Actor):
 
     def __init__(self, xposition, spriteindex, mirrored):
@@ -61,6 +61,9 @@ class Player(Actor):
         if not self._is_jumping:
             self.change_x = 0
         arcade.play_sound(constants.get_sound(self.spriteindex, "DOWN"))
+    
+    def is_dead(self):
+        return self._is_dead
 
     def is_hitting(self):
         is_hitting = self._is_hitting
@@ -102,10 +105,6 @@ class Player(Actor):
         self._update_position()
 
     def _update_collider(self):
-        #x1, y1 = - self._width / 2, - self._height / 2
-        #x2, y2 = + self._width / 2, - self._height / 2
-        #x3, y3 = + self._width / 2, + self._height / 2
-        #x4, y4 = - self._width / 2, + self._height / 2
         past_bottom = self.bottom
         self.set_hit_box(self.texture.hit_box_points)
         self.center_y += past_bottom - self.bottom
@@ -120,10 +119,11 @@ class Player(Actor):
     def _check_death(self):
         if self.current_health <= 0:
             self.change_x = 0
+
             self._is_dead = True
             num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_DEATH"))
             self._current_frame += 1         
-            if self._current_frame >= constants.DEATH_TIME / num_textures:
+            if self._current_frame >= math.ceil(float(constants.DEATH_TIME) / float(num_textures)):
                 self._current_frame = 0
                 self._texture_index = min(self._texture_index + 1, num_textures - 1)
                 self.texture = constants.get_texture(self.spriteindex, "PLAYER_DEATH", self.facing_left)[self._texture_index]
