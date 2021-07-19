@@ -51,7 +51,13 @@ def get_sound(spriteindex, name):
         HIT_ONE = sound.load_sound(os.path.join(PLAYER_SOUND, "Hit1.1.wav"))
         HIT_TWO = sound.load_sound(os.path.join(PLAYER_SOUND, "Hit1.2.wav"))
         HIT_THREE = sound.load_sound(os.path.join(PLAYER_SOUND, "Hit1.3.wav"))
+        DEATH = sound.load_sound(os.path.join(PLAYER_SOUND, "Death.wav"))
         HITS = [HIT_ONE, HIT_TWO, HIT_THREE]
+        BLOCK_ONE = sound.load_sound(os.path.join(PLAYER_SOUND, "Clash.mp3"))
+        BLOCK_TWO = sound.load_sound(os.path.join(PLAYER_SOUND, "Clash1.1.wav"))
+        BLOCK_THREE = sound.load_sound(os.path.join(PLAYER_SOUND, "Clash1.2.wav"))
+        BLOCK_FOUR = sound.load_sound(os.path.join(PLAYER_SOUND, "Clash1.3.wav"))
+        BLOCKS = [BLOCK_ONE, BLOCK_TWO, BLOCK_THREE, BLOCK_FOUR]
         if name == "JUMP":
             return JUMP
         elif name == "UP":
@@ -62,6 +68,10 @@ def get_sound(spriteindex, name):
             return SIDE
         elif name == "HIT":
             return random.choice(HITS)
+        elif name == "DEATH":
+            return DEATH
+        elif name == "BLOCK":
+            return random.choice(BLOCKS) 
     elif spriteindex == 1: 
         JUMP = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Jump.mp3"))
         UP = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Strike1.1.wav"))
@@ -70,7 +80,13 @@ def get_sound(spriteindex, name):
         HIT_ONE = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Hit1.1.wav"))
         HIT_TWO = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Hit1.2.wav"))
         HIT_THREE = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Hit1.3.wav"))
+        DEATH = sound.load_sound(os.path.join(PLAYER_TWO_SOUND, "Death.wav"))
         HITS = [HIT_ONE, HIT_TWO, HIT_THREE]
+        BLOCK_ONE = sound.load_sound(os.path.join(PLAYER_SOUND, "Clash.mp3"))
+        BLOCK_TWO = sound.load_sound(os.path.join(PLAYER_SOUND, "Clash1.1.wav"))
+        BLOCK_THREE = sound.load_sound(os.path.join(PLAYER_SOUND, "Clash1.2.wav"))
+        BLOCK_FOUR = sound.load_sound(os.path.join(PLAYER_SOUND, "Clash1.3.wav"))
+        BLOCKS = [BLOCK_ONE, BLOCK_TWO, BLOCK_THREE, BLOCK_FOUR]
         if name == "JUMP":
             return JUMP
         elif name == "UP":
@@ -81,7 +97,10 @@ def get_sound(spriteindex, name):
             return SIDE
         elif name == "HIT":
             return random.choice(HITS)
-
+        elif name == "DEATH":
+            return DEATH
+        elif name == "BLOCK":
+            return random.choice(BLOCKS) 
 #===========================BACKGROUND MUSIC CONSTANTS=======================#
 MUSIC_VOLUME = 0.5
 SONG_1 = MUSIC_PATH + "\Battle.mp3"
