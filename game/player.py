@@ -21,10 +21,6 @@ class Player(Actor):
         self.current_health = 100
         self.spriteindex = spriteindex
         self._is_hitting = False
-        self.x = self.center_x
-        self.y = self.center_y
-        self.x_offset = 0
-        self.y_offset = 0
         self._is_blocking = False
         self.player_name = "Player " + str(spriteindex + 1)
         self._is_dead = False
@@ -94,7 +90,6 @@ class Player(Actor):
         arcade.play_sound(constants.get_sound(self.spriteindex, "HIT"))
 
     def update(self):
-        self._update_velocity()
         self._check_death()
         if not self._is_dead:
             self._check_idle()
@@ -112,7 +107,7 @@ class Player(Actor):
         #x4, y4 = - self._width / 2, + self._height / 2
         past_bottom = self.bottom
         self.set_hit_box(self.texture.hit_box_points)
-        self.y_offset += past_bottom - self.bottom
+        self.center_y += past_bottom - self.bottom
         
     def _check_falling(self):
         if self.change_y < -5  and not self._is_attacking:
@@ -207,18 +202,12 @@ class Player(Actor):
                          start_y=self.center_y + 25, #This number determines the height at which the name is displayed
                          font_size=12,
                          color=arcade.color.WHITE)
-
-    def _update_velocity(self):
-        self.x = self.center_x - self.x_offset
-        self.y = self.center_y - self.y_offset
-
-        self.change_y -= constants.GRAVITY 
-        self.y += self.change_y
-        if not (self._is_attacking and not self._is_jumping):
-            self.x += self.change_x
+        
 
     def _update_position(self):
-        self.center_x = self.x + self.x_offset
-        self.center_y = self.y + self.y_offset
+        self.change_y -= constants.GRAVITY 
+        self.center_y += self.change_y
+        if not (self._is_attacking and not self._is_jumping):
+            self.center_x += self.change_x
 
         
