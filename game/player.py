@@ -88,6 +88,7 @@ class Player(Actor):
         attacks = ["ATTACK_ONE", "ATTACK_TWO", "ATTACK_THREE"]
         self._texture_index == constants.ATTACK_FRAME[attacks[self._attack_index]][self.spriteindex]
         self._is_blocking = True
+        arcade.play_sound(constants.get_sound(self.spriteindex, "BLOCK"))
 
     def damage(self, damage):
         self.current_health = min(max(self.current_health - damage, 0), self.max_health)  
@@ -126,12 +127,12 @@ class Player(Actor):
             self.change_x = 0
             self._is_dead = True
             num_textures = len(constants.get_texture(self.spriteindex, "PLAYER_DEATH"))
-            self._current_frame += 1
+            self._current_frame += 1         
             if self._current_frame >= constants.DEATH_TIME / num_textures:
                 self._current_frame = 0
                 self._texture_index = min(self._texture_index + 1, num_textures - 1)
                 self.texture = constants.get_texture(self.spriteindex, "PLAYER_DEATH", self.facing_left)[self._texture_index]
-
+                #arcade.play_sound(constants.get_sound(self.spriteindex, "DEATH"))
 
     def _check_jumping(self):
         if self.change_y > 0  and not self._is_attacking:
