@@ -12,6 +12,7 @@ from game.control_actors_action import ControlActorsAction
 from game.draw_actors_action import DrawActorsAction
 from game.move_actors_action import MoveActorsAction
 from game.check_win_action import CheckWinAction
+from game.check_for_next_scene_action import CheckForNextSceneAction
 from game.map import Map
 from game import constants
 import arcade
@@ -64,7 +65,12 @@ class GameScene(Scene):
         print(f"player {player_index} won!")
         script.clean_actions()
         # Win stuff here
-        # script.add_action(Cue.ON_KEY_PRESS, check_for_next_scene_action)
+
+        # Scene transition here
+        new_game_scene = GameScene()
+        new_game_scene.play_music()
+        self.check_for_next_scene_action = CheckForNextSceneAction(new_game_scene)
+        script.add_action(Cue.ON_KEY_PRESS, self.check_for_next_scene_action)
         
     def play_music(self):
             self.enable_bg_music = True
