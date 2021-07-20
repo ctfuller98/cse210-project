@@ -11,6 +11,8 @@ from game.handle_attack_collisions_action import HandleAttackCollisionsAction
 from game.control_actors_action import ControlActorsAction
 from game.draw_actors_action import DrawActorsAction
 from game.move_actors_action import MoveActorsAction
+from game.check_win_action import CheckWinAction
+from game.check_for_next_scene_action import CheckForNextSceneAction
 from game.map import Map
 from game import constants
 import arcade
@@ -31,25 +33,44 @@ class GameScene(Scene):
         #cast.add_actor("instructions", instruction)
 
   # create the script
-        control_actors_action = ControlActorsAction()
-        move_actors_action = MoveActorsAction()
-        handle_collisions_action = HandleCollisionsAction()
-        handle_attack_collisions_action = HandleAttackCollisionsAction()
-        draw_actors_action = DrawActorsAction()
+        self.control_actors_action = ControlActorsAction()
+        self.move_actors_action = MoveActorsAction()
+        self.handle_collisions_action = HandleCollisionsAction()
+        self.handle_attack_collisions_action = HandleAttackCollisionsAction()
+        self.draw_actors_action = DrawActorsAction()
+        self.check_win_action = CheckWinAction(self)
 
         script = Script()
-        script.add_action(Cue.ON_KEY_PRESS, control_actors_action)
-        script.add_action(Cue.ON_KEY_RELEASE, control_actors_action)
-        script.add_action(Cue.ON_UPDATE, move_actors_action)
-        script.add_action(Cue.ON_UPDATE, handle_collisions_action)
-        script.add_action(Cue.ON_UPDATE, handle_attack_collisions_action)
-        script.add_action(Cue.ON_DRAW, draw_actors_action)
+        script.add_action(Cue.ON_KEY_PRESS, self.control_actors_action)
+        script.add_action(Cue.ON_KEY_RELEASE, self.control_actors_action)
+        script.add_action(Cue.ON_UPDATE, self.move_actors_action)
+        script.add_action(Cue.ON_UPDATE, self.handle_collisions_action)
+        script.add_action(Cue.ON_UPDATE, self.handle_attack_collisions_action)
+        script.add_action(Cue.ON_DRAW, self.draw_actors_action)
+        script.add_action(Cue.ON_UPDATE, self.check_win_action)
         # set the scene
         self.set_cast(cast)
         self.set_script(script)
-
+        script.remove_action
         self.map_name = "game/assets/maps/dev_blocks.tmx"
         self._map = Map(self.map_name, self)
+
+    def player_won(self, player_index):
+        script = self.get_script()
+        script.remove_action(Cue.ON_UPDATE, self.handle_attack_collisions_action)
+        script.remove_action(Cue.ON_KEY_PRESS, self.control_actors_action)
+        script.remove_action(Cue.ON_KEY_RELEASE, self.control_actors_action)
+        script.remove_action(Cue.ON_UPDATE, self.check_win_action)
+
+        print(f"player {player_index} won!")
+        script.clean_actions()
+        # Win stuff here
+
+        # Scene transition here
+        new_game_scene = GameScene()
+        new_game_scene.play_music()
+        self.check_for_next_scene_action = CheckForNextSceneAction(new_game_scene)
+        script.add_action(Cue.ON_KEY_PRESS, self.check_for_next_scene_action)
         
     def play_music(self):
             self.enable_bg_music = True
