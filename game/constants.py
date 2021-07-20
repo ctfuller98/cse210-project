@@ -13,6 +13,7 @@ MOVE_SPEED = 6
 PLAYER_JUMP_SPEED = 15
 PLAYER_ANIMATION_RATE = 7
 PROJECT_ROOT = os.path.dirname(__file__)
+MENU_IMAGE = os.path.join(PROJECT_ROOT, "assets/Title Screen.png")
 PLAYER_SOUND = os.path.join(PROJECT_ROOT, "assets/KOO/Sounds")
 PLAYER_TWO_SOUND = os.path.join(PROJECT_ROOT, "assets/SING/Sounds")
 PLAYER_PATH = os.path.join(PROJECT_ROOT, "assets/KOO")
@@ -103,13 +104,13 @@ def get_sound(spriteindex, name):
             return random.choice(BLOCKS) 
 #===========================BACKGROUND MUSIC CONSTANTS=======================#
 MUSIC_VOLUME = 0.5
+TITLE_SONG = MUSIC_PATH + "\Menu Music.mp3"
 SONG_1 = MUSIC_PATH + "\Battle.mp3"
 SONG_2 = MUSIC_PATH + "\Epic Drums.mp3"
 SONG_3 = MUSIC_PATH + "\Action Fight.mp3"
 SONG_4 = MUSIC_PATH + "\Action Rhythms.mp3"
-SONG_5 = MUSIC_PATH + "\Daredevil.mp3"
 SONG_6 = MUSIC_PATH + "\Last Time.mp3"
-MUSIC_LIST = [SONG_1, SONG_2, SONG_3, SONG_4, SONG_5, SONG_6]
+MUSIC_LIST = [SONG_1, SONG_2, SONG_3, SONG_4, SONG_6]
 
 #(NAME OF ANIMATION , FILE PATH/FILE NAME, NUMBER OF FILES , MIRRORED?) 
 
