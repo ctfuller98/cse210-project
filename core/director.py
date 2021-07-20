@@ -1,16 +1,31 @@
+from game.game_scene import GameScene
+from game.gamesstate import Gamestate
 import arcade
+import random
 from core.action import Action
 from core.cue import Cue
-
 
 class Director(arcade.Window, Action.Callback):
     
     def __init__(self, screen_width, screen_height):
         super().__init__(screen_width, screen_height)
         self._scene = None
+
+        # Sets the game's state to be in the main menu
+        self.gamestate = Gamestate.main_menu
         
+    def open_main_menu(self):
+        self.gamestate = Gamestate.main_menu
+        
+        random_num = random.randint(1, 3)
+        next_map = f"game/assets/maps/forest_{random_num}.tmx"
+
+        self._scene = GameScene(next_map)
+        self._scene.round_start
+
     def direct_scene(self, scene):
         self._scene = scene
+        scene.round_start()
     
     def on_draw(self):
         arcade.start_render()
@@ -52,6 +67,9 @@ class Director(arcade.Window, Action.Callback):
         self._cue_action(Cue.ON_UPDATE, cue_info)
         
     def _cue_action(self, cue_name, cue_info):
+        if self._scene is None:
+            return
+
         cast = self._scene.get_cast()
         script = self._scene.get_script()
         cue = Cue(cue_name, cue_info)

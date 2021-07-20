@@ -17,7 +17,7 @@ class Map():
                                                       layer_name="Center",
                                                       scaling=1,
                                                       use_spatial_hash=True)
-        print(self._center_tile[0].center_x)
+
         self._background = arcade.tilemap.process_layer(map_object=my_map,
                                                       layer_name="Background",
                                                       scaling=1,
@@ -46,9 +46,11 @@ class Map():
         
         self.scroll_y =  (players[0].center_y + players[1].center_y) // 2 - constants.SCREEN_HEIGHT // 2
         self.scroll_y = max(0, self.scroll_y)
+        self.scroll_y = min(128, self.scroll_y)
         self.scroll_x = max(0, self.scroll_x)
-        self.scroll_x = min(208, self.scroll_x)
+        self.scroll_x = min(24, self.scroll_x)
         
+        print(self.scroll_y)
         arcade.set_viewport(self.scroll_x, self.scroll_x + constants.SCREEN_WIDTH, self.scroll_y ,self.scroll_y + constants.SCREEN_HEIGHT)
         
 
