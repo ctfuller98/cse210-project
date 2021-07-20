@@ -42,7 +42,8 @@ class GameScene(Scene):
         # Scene transition here
         random_num = random.randint(1, 3)
         next_map = f"game/assets/maps/forest_{random_num}.tmx"
-        new_game_scene = GameScene(self._map_name)
+        new_game_scene = GameScene(next_map)
+
         self.check_for_next_scene_action = CheckForNextSceneAction(new_game_scene)
         self.get_script().add_action(Cue.ON_KEY_PRESS, self.check_for_next_scene_action)
         
@@ -105,7 +106,11 @@ class GameScene(Scene):
         script.remove_action(Cue.ON_KEY_RELEASE, self.control_actors_action)
         script.remove_action(Cue.ON_UPDATE, self.check_win_action)
         script.clean_actions()
-        arcade.stop_sound(self.background_music)
+
+        try:
+            arcade.stop_sound(self.background_music)
+        except:
+            pass
 
 
     def reset(self):
